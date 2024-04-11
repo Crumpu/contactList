@@ -1,0 +1,12 @@
+.initialSpan {
+  display: flex;
+  width: 2rem;
+  height: 2rem;
+  font-size: larger;
+  border-radius: 50%;
+  color: antiquewhite;
+  justify-content: center;
+  align-items: center;
+  font-size: 1em;
+font-weight: 500;
+}

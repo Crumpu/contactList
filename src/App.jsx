@@ -1,35 +1,61 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { Component } from 'react';
+import { nanoid } from 'nanoid';
+import FormEdit from './components/FormEdit/FormEdit';
+import AddForm from './components/AddForm/AddForm';
+import ContactList from './components/ContactList/ContactList';
+import './App.css';
 
-function App() {
-  const [count, setCount] = useState(0)
+export class App extends Component {
+  state = {
+    contacts: [
+      {
+        fName: 'Dohn',
+        lName: 'Doe',
+        telNumber: '+380660000000',
+        email: 'johndoe@gmail.com',
+        id: nanoid(),
+      },
+      {
+        fName: 'Jane',
+        lName: 'Doe',
+        telNumber: '+380660000001',
+        email: 'janedoe@gmail.com',
+        id: nanoid(),
+      },
+    ],
+  };
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+  addContact = (contact) => {
+    contact.id = nanoid();
+    this.setState((state) => {
+      const contacts = [...state.contacts, contact];
+      return contacts;
+    });
+  };
+
+  changeColor = () => {
+    const color = Math.floor(Math.random() * 255);
+    return color;
+  };
+
+  bgColor = () => {
+    return {
+      backgroundColor: `rgb(${this.changeColor()}, ${this.changeColor()}, ${this.changeColor()})`,
+    };
+  };
+
+  render() {
+    return (
+      <>
+        <FormEdit />
+        <AddForm onSubmit={this.addContact} />
+        <ContactList
+          contacts={this.state.contacts}
+          toChangeColor={this.bgColor}
+        />
+      </>
+    );
+  }
 }
 
-export default App
+export default App;
