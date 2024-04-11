@@ -1,0 +1,28 @@
+.inputDiv{
+    display: flex;
+}
+
+.inputDiv > div{
+    margin: 0;
+}
+
+.clearInput{
+   align-content: center;
+   height: inherit;
+   background-color: rgb(163, 163, 163);
+   width: 2vw;
+}
+
+input {
+  display: flex;
+  font-size: larger;
+  width: 20vw;
+  height: 2rem;
+  margin: 4vh 0;
+  padding-left: 1vw;
+  font-size: 1em;
+  font-weight: 500;
+  border: none;
+  border-radius: 10px;
+  background-color: rgb(224, 224, 224);
+}

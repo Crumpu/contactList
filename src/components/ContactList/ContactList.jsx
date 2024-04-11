@@ -3,7 +3,6 @@ import ContactItem from '../ContactItem/ContactItem';
 
 export class ContactList extends Component {
   render() {
-    console.log(this.props.contacts);
     return (
       <>
         {this.props.contacts.map((contact) => {
@@ -12,9 +11,12 @@ export class ContactList extends Component {
               key={contact.id}
               contact={contact}
               toChangeColor={this.props.toChangeColor}
+              onDelete={this.props.onDelete}
+              onSelect={this.props.onSelect}
             />
           );
-        })}
+        })} 
+        <button>New</button>
       </>
     );
   }
