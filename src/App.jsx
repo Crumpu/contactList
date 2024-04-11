@@ -29,7 +29,9 @@ export class App extends Component {
     contact.id = nanoid();
     this.setState((state) => {
       const contacts = [...state.contacts, contact];
-      return contacts;
+      return {
+        contacts,
+      };
     });
   };
 
@@ -45,9 +47,10 @@ export class App extends Component {
   };
 
   render() {
-    console.log(this.state)
+    console.log(this.state.contacts);
     return (
       <>
+        <h1>Contact List</h1>
         <FormEdit />
         <AddForm onSubmit={this.addContact} />
         <ContactList

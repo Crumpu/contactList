@@ -22,8 +22,8 @@ export class AddForm extends Component {
     this.props.onSubmit({
       fName: this.state.fName,
       lName: this.state.lName,
-      email: this.state.email,
       telNumber: this.state.telNumber,
+      email: this.state.email,
     });
   };
 
