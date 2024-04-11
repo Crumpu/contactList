@@ -9,17 +9,30 @@ export class AddForm extends Component {
     telNumber: '',
   };
 
+    
   onInputChange = (event) => {
-    const { name, value } = event.target; // Деструктурируем name и value из event.target
-    console.log(name);
+    const { name, value } = event.target;
     this.setState({
       [name]: value,
     });
   };
 
-  render() {
+  onFormSubmit = (event) => {
+    event.preventDefault();
+    this.props.onSubmit({
+      fName: this.state.fName,
+      lName: this.state.lName,
+      email: this.state.email,
+      telNumber: this.state.telNumber,
+    });
+  };
+
+    render() {
     return (
-      <form id="contactItemForm">
+        <form id="contactItemForm"
+        onSubmit={this.onFormSubmit}
+        >
+            
         <input
           type="text"
           name="fName"
@@ -48,8 +61,8 @@ export class AddForm extends Component {
           value={this.state.telNumber}
           onChange={this.onInputChange}
         />
+        <button >Save</button>
         <button type="reset">New</button>
-        <button type="submit">Save</button>
       </form>
     );
   }

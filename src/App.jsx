@@ -9,14 +9,14 @@ export class App extends Component {
   state = {
     contacts: [
       {
-        fName: 'Dohn',
+        fName: 'John',
         lName: 'Doe',
         telNumber: '+380660000000',
         email: 'johndoe@gmail.com',
         id: nanoid(),
       },
       {
-        fName: 'Jane',
+        fName: 'Bill',
         lName: 'Doe',
         telNumber: '+380660000001',
         email: 'janedoe@gmail.com',
@@ -45,6 +45,7 @@ export class App extends Component {
   };
 
   render() {
+    console.log(this.state)
     return (
       <>
         <FormEdit />
