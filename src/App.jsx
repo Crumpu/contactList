@@ -65,7 +65,7 @@ export class App extends Component {
     console.log('update');
     this.setState((state) => {
       const contacts = state.contacts.map((item) => {
-        item.id === contact.id ? item : contact;
+        item.id === contact.id ? contact : item;
       });
       this.saveToLocalStorage(contacts);
       return {
