@@ -108,7 +108,7 @@ export class App extends Component {
   };
 
   render() {
-    console.log(this.state.currentContact)
+    console.log(this.state.currentContact);
     return (
       <div className="appDiv">
         <div id="h1Div">
@@ -124,8 +124,8 @@ export class App extends Component {
         <div className="contactList">
           <ContactList
             contacts={this.state.contacts}
-    addNewContact={this.addNewContact}
-                   onDelete={this.deleteContact}
+            addNewContact={this.addNewContact}
+            onDelete={this.deleteContact}
             onSelect={this.selectContact}
           />
         </div>

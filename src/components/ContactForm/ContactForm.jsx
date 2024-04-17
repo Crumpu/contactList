@@ -3,11 +3,12 @@ import './ContactForm.css';
 
 export class ContactForm extends Component {
   state = {
-    ...this.props.currentContact,
+    ...this.currentContact,
   };
 
   createEmptyContact() {
     return {
+      id: null,
       fName: '',
       lName: '',
       email: '',
@@ -51,10 +52,11 @@ export class ContactForm extends Component {
       email: this.state.email,
       telNumber: this.state.telNumber,
     });
+    this.setState(this.createEmptyContact());
   };
 
   render() {
-console.log(this.state)
+    console.log(this.state);
     return (
       <form id="contactItemForm" onSubmit={this.onFormSubmit}>
         <div className="inputDiv">
