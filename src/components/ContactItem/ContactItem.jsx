@@ -14,15 +14,9 @@ export class ContactItem extends Component {
   render() {
     // console.log(this.props)
     const { fName, lName } = this.props.contact;
-    const initials =
-      fName.trim().slice(0, 1).toUpperCase() +
-      lName.trim().slice(0, 1).toUpperCase();
-    const changeColor = this.props.toChangeColor;
+
     return (
       <div className="itemDiv" onDoubleClick={this.onContactSelect}>
-        <span style={changeColor()} className="initialSpan">
-          {initials}
-        </span>
         <p id="contactName">{fName + ' ' + lName}</p>
         <span className="spanX" onClick={this.onContactDelete}>
           x

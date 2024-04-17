@@ -35,6 +35,14 @@ export class App extends Component {
     }
   }
 
+  // ==============function addNewContact========================
+
+  addNewContact = () => {
+    this.setState({
+      currentContact: this.createEmptyContact(),
+    });
+  };
+
   // ============function selectContact========================
 
   selectContact = (contact) => {
@@ -54,10 +62,11 @@ export class App extends Component {
   // ============function updateContact=========================
 
   updateContact(contact) {
-    console.log('update')
+    console.log('update');
     this.setState((state) => {
       const contacts = state.contacts.map((item) => {
-        item.id === contact.id ? item : contact});
+        item.id === contact.id ? item : contact;
+      });
       this.saveToLocalStorage(contacts);
       return {
         contacts,
@@ -69,7 +78,7 @@ export class App extends Component {
   // ============function createContact=======================
 
   createContact = (contact) => {
-    console.log('create')
+    console.log('create');
     contact.id = nanoid();
     const contacts = [...this.state.contacts, contact];
     this.saveToLocalStorage(contacts);
@@ -98,20 +107,8 @@ export class App extends Component {
     localStorage.setItem('contacts', JSON.stringify(arrContacts));
   };
 
-  // --------------unction change bg color------------------------------
-
-  changeColor = () => {
-    const color = Math.floor(Math.random() * 255);
-    return color;
-  };
-
-  bgColor = () => {
-    return {
-      backgroundColor: `rgb(${this.changeColor()}, ${this.changeColor()}, ${this.changeColor()})`,
-    };
-  };
-  // --------------------------------------------------------------------
   render() {
+    console.log(this.state.currentContact)
     return (
       <div className="appDiv">
         <div id="h1Div">
@@ -127,9 +124,8 @@ export class App extends Component {
         <div className="contactList">
           <ContactList
             contacts={this.state.contacts}
-            currentContact={this.state.currentContact}
-            toChangeColor={this.bgColor}
-            onDelete={this.deleteContact}
+    addNewContact={this.addNewContact}
+                   onDelete={this.deleteContact}
             onSelect={this.selectContact}
           />
         </div>

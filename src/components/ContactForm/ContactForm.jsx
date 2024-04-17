@@ -54,7 +54,7 @@ export class ContactForm extends Component {
   };
 
   render() {
-    console.log(this.state.id);
+console.log(this.state)
     return (
       <form id="contactItemForm" onSubmit={this.onFormSubmit}>
         <div className="inputDiv">

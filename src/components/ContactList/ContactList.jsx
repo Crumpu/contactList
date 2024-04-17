@@ -17,6 +17,7 @@ export class ContactList extends Component {
             />
           );
         })} 
+        <button onClick={this.props.addNewContact}>New</button>
       </>
     );
   }
