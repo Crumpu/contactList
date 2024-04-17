@@ -2,11 +2,9 @@ import { Component } from 'react';
 import './ContactItem.css';
 
 export class ContactItem extends Component {
-  onContactSelect = (event) => {
-    // event.stopPropagation();
-    console.dir(event.target);
-    this.props.onSelect(event.target)
-
+  onContactSelect = () => {
+    const { contact } = this.props;
+    this.props.onSelect(contact);
   };
 
   onContactDelete = (event) => {
@@ -14,15 +12,12 @@ export class ContactItem extends Component {
     this.props.onDelete(this.props.contact.id);
   };
   render() {
-
+    // console.log(this.props)
     const { fName, lName } = this.props.contact;
-
     const initials =
       fName.trim().slice(0, 1).toUpperCase() +
       lName.trim().slice(0, 1).toUpperCase();
-
     const changeColor = this.props.toChangeColor;
-
     return (
       <div className="itemDiv" onDoubleClick={this.onContactSelect}>
         <span style={changeColor()} className="initialSpan">

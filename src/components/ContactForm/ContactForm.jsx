@@ -1,12 +1,32 @@
 import { Component } from 'react';
 import './ContactForm.css';
 
-export class AddForm extends Component {
+export class ContactForm extends Component {
   state = {
-    fName: '',
-    lName: '',
-    email: '',
-    telNumber: '',
+    ...this.props.currentContact,
+  };
+
+  createEmptyContact() {
+    return {
+      fName: '',
+      lName: '',
+      email: '',
+      telNumber: '',
+    };
+  }
+
+  static getDerivedStateFromProps(props, state) {
+    if (props.currentContact.id !== state.id) {
+      return {
+        ...props.currentContact,
+      };
+    }
+    return {};
+  }
+
+  onContactDelete = (event) => {
+    event.preventDefault();
+    this.props.onDelete(this.props.currentContact.id);
   };
 
   onInputChange = (event) => {
@@ -28,18 +48,13 @@ export class AddForm extends Component {
     this.props.onSubmit({
       fName: this.state.fName,
       lName: this.state.lName,
-      telNumber: this.state.telNumber,
       email: this.state.email,
-    });
-    this.setState({
-      fName: '',
-      lName: '',
-      email: '',
-      telNumber: '',
+      telNumber: this.state.telNumber,
     });
   };
 
   render() {
+    console.log(this.state.id);
     return (
       <form id="contactItemForm" onSubmit={this.onFormSubmit}>
         <div className="inputDiv">
@@ -92,10 +107,14 @@ export class AddForm extends Component {
           </span>
         </div>
         <button type="submit">Save</button>
-        {}
+        {!this.props.currentContact.id ? (
+          <></>
+        ) : (
+          <button onClick={this.onContactDelete}>Delete</button>
+        )}
       </form>
     );
   }
 }
 
-export default AddForm;
+export default ContactForm;

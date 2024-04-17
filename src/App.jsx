@@ -7,13 +7,20 @@ import './App.css';
 export class App extends Component {
   state = {
     contacts: [],
-    currentContact: {
+    currentContact: this.createEmptyContact(),
+  };
+
+  // ====================function createEmptyContact==============
+
+  createEmptyContact() {
+    return {
+      id: null,
       fName: '',
       lName: '',
-      telNumber: '',
       email: '',
-    },
-  };
+      telNumber: '',
+    };
+  }
 
   componentDidMount() {
     const contacts = JSON.parse(localStorage.getItem('contacts'));
@@ -34,16 +41,41 @@ export class App extends Component {
     this.setState({ currentContact: contact });
   };
 
+  // ============function saveContact===========================
+
+  saveContact = (contact) => {
+    if (contact.id) {
+      this.updateContact(contact);
+    } else {
+      this.createContact(contact);
+    }
+  };
+
+  // ============function updateContact=========================
+
+  updateContact(contact) {
+    console.log('update')
+    this.setState((state) => {
+      const contacts = state.contacts.map((item) => {
+        item.id === contact.id ? item : contact});
+      this.saveToLocalStorage(contacts);
+      return {
+        contacts,
+        currentContact: contact,
+      };
+    });
+  }
+
   // ============function createContact=======================
 
   createContact = (contact) => {
+    console.log('create')
     contact.id = nanoid();
-    this.setState((state) => {
-      const contacts = [...state.contacts, contact];
-      this.saveContacts(contacts);
-      return {
-        contacts,
-      };
+    const contacts = [...this.state.contacts, contact];
+    this.saveToLocalStorage(contacts);
+    this.setState({
+      contacts: contacts,
+      currentContact: this.createEmptyContact(),
     });
   };
 
@@ -52,16 +84,17 @@ export class App extends Component {
   deleteContact = (id) => {
     this.setState((state) => {
       const contacts = state.contacts.filter((contact) => contact.id !== id);
-      this.saveContacts(contacts);
+      this.saveToLocalStorage(contacts);
       return {
         contacts,
+        currentContact: this.createEmptyContact(),
       };
     });
   };
 
-  // ============function saveContact=======================
+  // ============function saveToLocalStorage=======================
 
-  saveContacts = (arrContacts) => {
+  saveToLocalStorage = (arrContacts) => {
     localStorage.setItem('contacts', JSON.stringify(arrContacts));
   };
 
@@ -84,17 +117,20 @@ export class App extends Component {
         <div id="h1Div">
           <h1>Contact List</h1>
         </div>
-        <div className="addEditForm">
+        <div className="contactForm">
           <ContactForm
-            onSubmit={this.createContact}
-            onSelect={this.selectContact}
+            onSubmit={this.saveContact}
+            currentContact={this.state.currentContact}
+            onDelete={this.deleteContact}
           />
         </div>
         <div className="contactList">
           <ContactList
             contacts={this.state.contacts}
+            currentContact={this.state.currentContact}
             toChangeColor={this.bgColor}
             onDelete={this.deleteContact}
+            onSelect={this.selectContact}
           />
         </div>
       </div>
