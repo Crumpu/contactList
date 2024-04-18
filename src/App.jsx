@@ -41,6 +41,7 @@ export class App extends Component {
     this.setState({
       currentContact: this.createEmptyContact(),
     });
+    console.log('cleaning')
   };
 
   // ============function selectContact========================
@@ -52,6 +53,7 @@ export class App extends Component {
   // ============function saveContact===========================
 
   saveContact = (contact) => {
+    console.log(contact);
     if (contact.id) {
       this.updateContact(contact);
     } else {
@@ -64,12 +66,12 @@ export class App extends Component {
   updateContact(contact) {
     console.log('update');
     this.setState((state) => {
-      const contacts = state.contacts.map((item) => {
-        item.id === contact.id ? contact : item;
-      });
+      const contacts = state.contacts.map((item) =>
+        item.id === contact.id ? contact : item
+      );
       this.saveToLocalStorage(contacts);
       return {
-        contacts,
+        contacts: contacts,
         currentContact: contact,
       };
     });
@@ -107,8 +109,22 @@ export class App extends Component {
     localStorage.setItem('contacts', JSON.stringify(arrContacts));
   };
 
+  // ===========decoration========================================
+  // -------------------------------------------------------------
+  randomColor = () => {
+    const min = 0;
+    const max = 225;
+    const color = Math.floor(Math.random() * (max - min) + min);
+    return color;
+  };
+
+  bgColor = () => {
+    return {
+      backgroundColor: `rgb(${this.randomColor()}, ${this.randomColor()}, ${this.randomColor()})`,
+    };
+  };
+
   render() {
-    console.log(this.state.currentContact);
     return (
       <div className="appDiv">
         <div id="h1Div">
@@ -127,6 +143,7 @@ export class App extends Component {
             addNewContact={this.addNewContact}
             onDelete={this.deleteContact}
             onSelect={this.selectContact}
+            bgColor={this.bgColor}
           />
         </div>
       </div>

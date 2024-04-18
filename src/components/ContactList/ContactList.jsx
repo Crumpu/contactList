@@ -2,6 +2,7 @@ import { Component } from 'react';
 import ContactItem from '../ContactItem/ContactItem';
 
 export class ContactList extends Component {
+  
   render() {
     return (
       <>
@@ -14,6 +15,7 @@ export class ContactList extends Component {
               toChangeColor={this.props.toChangeColor}
               onDelete={this.props.onDelete}
               onSelect={this.props.onSelect}
+              bgColor={this.props.bgColor}
             />
           );
         })} 

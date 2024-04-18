@@ -3,7 +3,7 @@ import './ContactForm.css';
 
 export class ContactForm extends Component {
   state = {
-    ...this.currentContact,
+    ...this.props.currentContact,
   };
 
   createEmptyContact() {
@@ -21,6 +21,7 @@ export class ContactForm extends Component {
       return {
         ...props.currentContact,
       };
+      
     }
     return {};
   }
@@ -47,16 +48,22 @@ export class ContactForm extends Component {
   onFormSubmit = (event) => {
     event.preventDefault();
     this.props.onSubmit({
+      id: this.state.id,
       fName: this.state.fName,
       lName: this.state.lName,
       email: this.state.email,
       telNumber: this.state.telNumber,
     });
-    this.setState(this.createEmptyContact());
+    if (!this.state.id) {
+      this.setState({
+        ...this.createEmptyContact(),
+      });
+    }
   };
 
   render() {
-    console.log(this.state);
+    console.log(this.props)
+    console.log(this.state)
     return (
       <form id="contactItemForm" onSubmit={this.onFormSubmit}>
         <div className="inputDiv">
