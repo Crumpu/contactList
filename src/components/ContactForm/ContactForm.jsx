@@ -17,11 +17,10 @@ export class ContactForm extends Component {
   }
 
   static getDerivedStateFromProps(props, state) {
-    if (props.currentContact.id !== state.id) {
+    if (props.currentContact.id !== state.id || state.id === null) {
       return {
         ...props.currentContact,
       };
-      
     }
     return {};
   }
@@ -48,11 +47,7 @@ export class ContactForm extends Component {
   onFormSubmit = (event) => {
     event.preventDefault();
     this.props.onSubmit({
-      id: this.state.id,
-      fName: this.state.fName,
-      lName: this.state.lName,
-      email: this.state.email,
-      telNumber: this.state.telNumber,
+   ...this.state,
     });
     if (!this.state.id) {
       this.setState({
@@ -62,8 +57,8 @@ export class ContactForm extends Component {
   };
 
   render() {
-    console.log(this.props)
-    console.log(this.state)
+    console.log(this.state); 
+    console.log(this.props.currentContact)
     return (
       <form id="contactItemForm" onSubmit={this.onFormSubmit}>
         <div className="inputDiv">

@@ -2,7 +2,9 @@ import { Component } from 'react';
 import ContactItem from '../ContactItem/ContactItem';
 
 export class ContactList extends Component {
+  clearForm = () => {
   
+}
   render() {
     return (
       <>
