@@ -41,7 +41,7 @@ export class App extends Component {
     this.setState({
       currentContact: this.createEmptyContact(),
     });
-    console.log('cleaning')
+    console.log('cleaning');
   };
 
   // ============function selectContact========================
