@@ -17,7 +17,7 @@ export class ContactForm extends Component {
   }
 
   static getDerivedStateFromProps(props, state) {
-    if (props.currentContact.id !== state.id) {
+    if (props.currentContact.id !== state.id || state.id === null) {
       return {
         ...props.currentContact,
       };
