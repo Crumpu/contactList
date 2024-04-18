@@ -11,7 +11,6 @@ export class ContactList extends Component {
               <ContactItem
                 key={contact.id}
                 contact={contact}
-                toChangeColor={this.props.toChangeColor}
                 onDelete={this.props.onDelete}
                 onSelect={this.props.onSelect}
                 bgColor={this.props.bgColor}
