@@ -126,18 +126,11 @@ export class App extends Component {
 
   render() {
     return (
-      <div className="appDiv">
+      <>
         <div id="h1Div">
           <h1>Contact List</h1>
         </div>
-        <div className="contactForm">
-          <ContactForm
-            onSubmit={this.saveContact}
-            currentContact={this.state.currentContact}
-            onDelete={this.deleteContact}
-          />
-        </div>
-        <div className="contactList">
+        <div className="appDiv">
           <ContactList
             contacts={this.state.contacts}
             addNewContact={this.addNewContact}
@@ -145,8 +138,13 @@ export class App extends Component {
             onSelect={this.selectContact}
             bgColor={this.bgColor}
           />
+          <ContactForm
+            onSubmit={this.saveContact}
+            currentContact={this.state.currentContact}
+            onDelete={this.deleteContact}
+          />
         </div>
-      </div>
+      </>
     );
   }
 }

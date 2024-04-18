@@ -47,7 +47,7 @@ export class ContactForm extends Component {
   onFormSubmit = (event) => {
     event.preventDefault();
     this.props.onSubmit({
-   ...this.state,
+      ...this.state,
     });
     if (!this.state.id) {
       this.setState({
@@ -57,7 +57,7 @@ export class ContactForm extends Component {
   };
 
   render() {
-    console.log(this.state); 
+    console.log(this.state);
     console.log(this.props.currentContact);
     return (
       <form id="contactItemForm" onSubmit={this.onFormSubmit}>
@@ -110,12 +110,14 @@ export class ContactForm extends Component {
             x
           </span>
         </div>
-        <button type="submit">Save</button>
-        {!this.props.currentContact.id ? (
-          <></>
-        ) : (
-          <button onClick={this.onContactDelete}>Delete</button>
-        )}
+        <div className='formButtons'>
+          <button type="submit">Save</button>
+          {!this.props.currentContact.id ? (
+            <></>
+          ) : (
+            <button onClick={this.onContactDelete}>Delete</button>
+          )}
+        </div>
       </form>
     );
   }

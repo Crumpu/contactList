@@ -20,20 +20,43 @@
     'b b b . c c c'
     'b b b . c c c'
     'b b b . c c c'
-    'b b b . c c c'
     '. . . . . . .'
-    '. d . . e . f';
+    '. d . . . e .';
 }
 
 .contactList {
   grid-area: b;
+  display: flex;
+  flex-direction: column;
+  height: 50vh;
+  position: relative;
+}
+
+.formButtons > button {
+  height: max-content;
+}
+
+.buttonNew {
+margin: auto;
+}
+
+.listItems {
+  height: 60vh;
+  overflow: auto;
+}
+
+#contactItemForm {
+  grid-area: c;
+  height: 80vh;
 }
 
 .contactForm {
+  display: flex;
   grid-area: c;
 }
 
 #h1Div {
+  text-align: center;
   grid-area: a;
   width: 100%;
   height: auto;
@@ -69,20 +92,4 @@ button {
 }
 button:hover {
   border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-  }
 }

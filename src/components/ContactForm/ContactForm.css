@@ -1,28 +1,32 @@
-.inputDiv{
-    display: flex;
+.inputDiv {
+  display: flex;
+  height: 3em;
+  margin: 3vh;
 }
 
-.inputDiv > div{
-    margin: 0;
-}
-
-.clearInput{
-   align-content: center;
-   height: inherit;
-   background-color: rgb(163, 163, 163);
-   width: 2vw;
+.clearInput {
+  color: rgba(0, 0, 0, 0.5);
+  font-weight: 700;
+  border-radius: 5%;
+  background-color: rgb(194, 194, 194);
+  text-align: center;
+  align-content: center;
+  width: 3vw;
 }
 
 input {
   display: flex;
   font-size: larger;
-  width: 20vw;
-  height: 2rem;
-  margin: 4vh 0;
+  height: inherit;
   padding-left: 1vw;
-  font-size: 1em;
   font-weight: 500;
   border: none;
-  border-radius: 10px;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
   background-color: rgb(224, 224, 224);
+}
+
+.formButtons {
+  display: flex;
+  justify-content: space-evenly;
 }
