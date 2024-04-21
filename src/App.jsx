@@ -17,6 +17,7 @@ function App() {
       lName: '',
       email: '',
       telNumber: '',
+      color: '',
     };
   }
 
@@ -68,6 +69,7 @@ function App() {
 
   const createContact = (contact) => {
     contact.id = nanoid();
+    contact.color = bgColor(contact);
     const newContact = [...contacts, contact];
     saveToLocalStorage(newContact);
     setContacts(newContact);
@@ -90,7 +92,6 @@ function App() {
   };
 
   // ===========decoration========================================
-  // -------------------------------------------------------------
   const randomColor = () => {
     const min = 0;
     const max = 225;
@@ -98,11 +99,12 @@ function App() {
     return color;
   };
 
-  const bgColor = () => {
-    return {
+  const bgColor = (contact) => {
+    return (contact.color = {
       backgroundColor: `rgb(${randomColor()}, ${randomColor()}, ${randomColor()})`,
-    };
+    });
   };
+  // -------------------------------------------------------------
 
   return (
     <>
@@ -116,7 +118,6 @@ function App() {
           addNewContact={addNewContact}
           onDelete={deleteContact}
           onSelect={selectContact}
-          bgColor={bgColor}
         />
         <ContactForm
           onSubmit={saveContact}

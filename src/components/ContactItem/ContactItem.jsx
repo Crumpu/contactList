@@ -1,6 +1,6 @@
 import './ContactItem.css';
 
-function ContactItem({ contact, onDelete, onSelect, bgColor }) {
+function ContactItem({ contact, onDelete, onSelect }) {
   const onContactSelect = () => {
     onSelect(contact);
   };
@@ -19,7 +19,7 @@ function ContactItem({ contact, onDelete, onSelect, bgColor }) {
   return (
     <div className="itemDiv" onDoubleClick={onContactSelect}>
       {/* decoration */}
-      <span className="initialSpan" style={bgColor()}>
+      <span className="initialSpan" style={contact.color}>
         {initials}
       </span>
       {/* decoration */}

@@ -15,9 +15,9 @@ function ContactForm({ currentContact, onDelete, onSubmit }) {
     };
   }
 
-    useEffect(() => {
-      setContact({ ...currentContact });
-    }, [currentContact]);
+  useEffect(() => {
+    setContact({ ...currentContact });
+  }, [currentContact]);
 
   const onContactDelete = (event) => {
     event.preventDefault();
@@ -26,7 +26,7 @@ function ContactForm({ currentContact, onDelete, onSubmit }) {
 
   const onInputChange = (event) => {
     const { name, value } = event.target;
-    setContact( {
+    setContact({
       ...contact,
       [name]: value,
     });

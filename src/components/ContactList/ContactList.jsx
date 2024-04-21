@@ -1,4 +1,3 @@
-import { Component } from 'react';
 import ContactItem from '../ContactItem/ContactItem';
 
 function ContactList({ contacts, addNewContact, onDelete, onSelect, bgColor }) {
@@ -12,7 +11,7 @@ function ContactList({ contacts, addNewContact, onDelete, onSelect, bgColor }) {
               contact={contact}
               onDelete={onDelete}
               onSelect={onSelect}
-              bgColor={bgColor}
+      
             />
           );
         })}
