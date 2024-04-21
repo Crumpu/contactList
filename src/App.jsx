@@ -1,18 +1,16 @@
-import { Component } from 'react';
+import { useEffect, useState } from 'react';
 import { nanoid } from 'nanoid';
 import ContactForm from './components/ContactForm/ContactForm';
 import ContactList from './components/ContactList/ContactList';
 import './App.css';
 
-export class App extends Component {
-  state = {
-    contacts: [],
-    currentContact: this.createEmptyContact(),
-  };
+function App() {
+  const [contacts, setContacts] = useState([]);
+  const [currentContact, setCurrentContacts] = useState(createEmptyContact());
 
   // ====================function createEmptyContact==============
 
-  createEmptyContact() {
+  function createEmptyContact() {
     return {
       id: null,
       fName: '',
@@ -22,131 +20,112 @@ export class App extends Component {
     };
   }
 
-  componentDidMount() {
+  // ================get from storage================================
+
+  useEffect(getFromStorage, []);
+
+  function getFromStorage() {
     const contacts = JSON.parse(localStorage.getItem('contacts'));
     if (!contacts) {
-      this.setState({
-        contacts: [],
-      });
+      setContacts([]);
     } else {
-      this.setState({
-        contacts: [...contacts],
-      });
+      setContacts(contacts);
     }
   }
 
   // ==============function addNewContact========================
 
-  addNewContact = () => {
-    this.setState({
-      currentContact: this.createEmptyContact(),
-    });
-    console.log('cleaning');
+  const addNewContact = () => {
+    setCurrentContacts(createEmptyContact());
   };
 
   // ============function selectContact========================
 
-  selectContact = (contact) => {
-    this.setState({ currentContact: contact });
-  };
+  const selectContact = (contact) => setCurrentContacts(contact);
 
   // ============function saveContact===========================
 
-  saveContact = (contact) => {
-    console.log(contact);
+  const saveContact = (contact) => {
     if (contact.id) {
-      this.updateContact(contact);
+      updateContact(contact);
     } else {
-      this.createContact(contact);
+      createContact(contact);
     }
   };
 
   // ============function updateContact=========================
 
-  updateContact(contact) {
-    console.log('update');
-    this.setState((state) => {
-      const contacts = state.contacts.map((item) =>
-        item.id === contact.id ? contact : item
-      );
-      this.saveToLocalStorage(contacts);
-      return {
-        contacts: contacts,
-        currentContact: contact,
-      };
-    });
+  function updateContact(contact) {
+    const updateContacts = contacts.map((item) =>
+      item.id === contact.id ? contact : item
+    );
+    saveToLocalStorage(updateContacts);
+    setContacts(updateContacts);
+    setCurrentContacts(contact);
   }
 
   // ============function createContact=======================
 
-  createContact = (contact) => {
-    console.log('create');
+  const createContact = (contact) => {
     contact.id = nanoid();
-    const contacts = [...this.state.contacts, contact];
-    this.saveToLocalStorage(contacts);
-    this.setState({
-      contacts: contacts,
-      currentContact: this.createEmptyContact(),
-    });
+    const newContact = [...contacts, contact];
+    saveToLocalStorage(newContact);
+    setContacts(newContact);
+    setCurrentContacts(createEmptyContact());
   };
 
   // ============function deleteContact=======================
 
-  deleteContact = (id) => {
-    this.setState((state) => {
-      const contacts = state.contacts.filter((contact) => contact.id !== id);
-      this.saveToLocalStorage(contacts);
-      return {
-        contacts,
-        currentContact: this.createEmptyContact(),
-      };
-    });
+  const deleteContact = (id) => {
+    const newContact = contacts.filter((contact) => contact.id !== id);
+    saveToLocalStorage(newContact);
+    setContacts(newContact);
+    setCurrentContacts(createEmptyContact());
   };
 
   // ============function saveToLocalStorage=======================
 
-  saveToLocalStorage = (arrContacts) => {
+  const saveToLocalStorage = (arrContacts) => {
     localStorage.setItem('contacts', JSON.stringify(arrContacts));
   };
 
   // ===========decoration========================================
   // -------------------------------------------------------------
-  randomColor = () => {
+  const randomColor = () => {
     const min = 0;
     const max = 225;
     const color = Math.floor(Math.random() * (max - min) + min);
     return color;
   };
 
-  bgColor = () => {
+  const bgColor = () => {
     return {
-      backgroundColor: `rgb(${this.randomColor()}, ${this.randomColor()}, ${this.randomColor()})`,
+      backgroundColor: `rgb(${randomColor()}, ${randomColor()}, ${randomColor()})`,
     };
   };
 
-  render() {
-    return (
-      <>
-        <div id="h1Div">
-          <h1>Contact List</h1>
-        </div>
-        <div className="appDiv">
-          <ContactList
-            contacts={this.state.contacts}
-            addNewContact={this.addNewContact}
-            onDelete={this.deleteContact}
-            onSelect={this.selectContact}
-            bgColor={this.bgColor}
-          />
-          <ContactForm
-            onSubmit={this.saveContact}
-            currentContact={this.state.currentContact}
-            onDelete={this.deleteContact}
-          />
-        </div>
-      </>
-    );
-  }
+  return (
+    <>
+      <div id="h1Div">
+        <h1>Contact List</h1>
+      </div>
+      <div className="appDiv">
+        <ContactList
+          key={currentContact.id}
+          contacts={contacts}
+          addNewContact={addNewContact}
+          onDelete={deleteContact}
+          onSelect={selectContact}
+          bgColor={bgColor}
+        />
+        <ContactForm
+          onSubmit={saveContact}
+          currentContact={currentContact}
+          onDelete={deleteContact}
+        />
+      </div>
+    </>
+  );
 }
 
 export default App;

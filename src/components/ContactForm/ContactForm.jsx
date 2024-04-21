@@ -1,12 +1,11 @@
-import { Component } from 'react';
+import { useEffect, useState } from 'react';
 import './ContactForm.css';
 
-export class ContactForm extends Component {
-  state = {
-    ...this.props.currentContact,
-  };
+function ContactForm({ currentContact, onDelete, onSubmit }) {
+  const [contact, setContact] = useState(currentContact);
+  console.log(currentContact);
 
-  createEmptyContact() {
+  function createEmptyContact() {
     return {
       id: null,
       fName: '',
@@ -16,111 +15,100 @@ export class ContactForm extends Component {
     };
   }
 
-  static getDerivedStateFromProps(props, state) {
-    if (props.currentContact.id !== state.id) {
-      return {
-        ...props.currentContact,
-      };
-    }
-    return {};
-  }
+    useEffect(() => {
+      setContact({ ...currentContact });
+    }, [currentContact]);
 
-  onContactDelete = (event) => {
+  const onContactDelete = (event) => {
     event.preventDefault();
-    this.props.onDelete(this.props.currentContact.id);
+    onDelete(contact.id);
   };
 
-  onInputChange = (event) => {
+  const onInputChange = (event) => {
     const { name, value } = event.target;
-    this.setState({
+    setContact( {
+      ...contact,
       [name]: value,
     });
   };
 
-  onClearInput = (event) => {
+  const onClearInput = (event) => {
     const sibling = event.target.previousSibling;
-    this.setState({
+    setContact({
+      ...contact,
       [sibling.name]: '',
     });
   };
 
-  onFormSubmit = (event) => {
+  const onFormSubmit = (event) => {
     event.preventDefault();
-    this.props.onSubmit({
-      ...this.state,
-    });
-    if (!this.state.id) {
-      this.setState({
-        ...this.createEmptyContact(),
-      });
+    onSubmit(contact);
+    if (!contact.id) {
+      setContact(createEmptyContact());
     }
   };
 
-  render() {
-    console.log(this.state);
-    console.log(this.props.currentContact);
-    return (
-      <form id="contactItemForm" onSubmit={this.onFormSubmit}>
-        <div className="inputDiv">
-          <input
-            type="text"
-            name="fName"
-            placeholder="First name"
-            value={this.state.fName}
-            onChange={this.onInputChange}
-          />
-          <span className="clearInput" onClick={this.onClearInput}>
-            x
-          </span>
-        </div>
-        <div className="inputDiv">
-          <input
-            type="text"
-            name="lName"
-            placeholder="Last name"
-            value={this.state.lName}
-            onChange={this.onInputChange}
-          />
-          <span className="clearInput" onClick={this.onClearInput}>
-            x
-          </span>
-        </div>
+  return (
+    <form id="contactItemForm" onSubmit={onFormSubmit}>
+      <div className="inputDiv">
+        <input
+          type="text"
+          name="fName"
+          placeholder="First name"
+          value={contact.fName}
+          onChange={onInputChange}
+        />
+        <span className="clearInput" onClick={onClearInput}>
+          x
+        </span>
+      </div>
+      <div className="inputDiv">
+        <input
+          type="text"
+          name="lName"
+          placeholder="Last name"
+          value={contact.lName}
+          onChange={onInputChange}
+        />
+        <span className="clearInput" onClick={onClearInput}>
+          x
+        </span>
+      </div>
 
-        <div className="inputDiv">
-          <input
-            type="email"
-            name="email"
-            placeholder="Email"
-            value={this.state.email}
-            onChange={this.onInputChange}
-          />
-          <span className="clearInput" onClick={this.onClearInput}>
-            x
-          </span>
-        </div>
-        <div className="inputDiv">
-          <input
-            type="tel"
-            placeholder="Phone number"
-            name="telNumber"
-            value={this.state.telNumber}
-            onChange={this.onInputChange}
-          />
-          <span className="clearInput" onClick={this.onClearInput}>
-            x
-          </span>
-        </div>
-        <div className='formButtons'>
-          <button type="submit">Save</button>
-          {!this.props.currentContact.id ? (
-            <></>
-          ) : (
-            <button onClick={this.onContactDelete}>Delete</button>
-          )}
-        </div>
-      </form>
-    );
-  }
+      <div className="inputDiv">
+        <input
+          type="email"
+          name="email"
+          placeholder="Email"
+          value={contact.email}
+          onChange={onInputChange}
+        />
+        <span className="clearInput" onClick={onClearInput}>
+          x
+        </span>
+      </div>
+      <div className="inputDiv">
+        <input
+          type="tel"
+          placeholder="Phone number"
+          name="telNumber"
+          value={contact.telNumber}
+          onChange={onInputChange}
+        />
+        <span className="clearInput" onClick={onClearInput}>
+          x
+        </span>
+      </div>
+      <div className="formButtons">
+        <button type="submit">Save</button>
+        {!currentContact.id ? (
+          <></>
+        ) : (
+          <button onClick={onContactDelete}>Delete</button>
+        )}
+      </div>
+    </form>
+  );
 }
 
 export default ContactForm;

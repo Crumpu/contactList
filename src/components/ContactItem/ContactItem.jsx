@@ -1,38 +1,34 @@
-import { Component } from 'react';
 import './ContactItem.css';
 
-export class ContactItem extends Component {
-  onContactSelect = () => {
-    const { contact } = this.props;
-    this.props.onSelect(contact);
+function ContactItem({ contact, onDelete, onSelect, bgColor }) {
+  const onContactSelect = () => {
+    onSelect(contact);
   };
 
-  onContactDelete = (event) => {
+  const onContactDelete = (event) => {
     event.stopPropagation();
-    this.props.onDelete(this.props.contact.id);
+    onDelete(contact.id);
   };
-  render() {
-    const { fName, lName } = this.props.contact;
-    // ===================decoration===================
-    const bgColor = this.props.bgColor;
-    const initials =
-      fName.trim().slice(0, 1).toUpperCase() +
-      lName.trim().slice(0, 1).toUpperCase();
-    // ================================================
-    return (
-      <div className="itemDiv" onDoubleClick={this.onContactSelect}>
-        {/* decoration */}
-        <span className="initialSpan" style={bgColor()}>
-          {initials}
-        </span>
-        {/* decoration */}
-        <p id="contactName">{fName + ' ' + lName}</p>
-        <span className="spanX" onClick={this.onContactDelete}>
-          x
-        </span>
-      </div>
-    );
-  }
+
+  // ===================decoration===================
+
+  const initials =
+    contact.fName.trim().slice(0, 1).toUpperCase() +
+    contact.lName.trim().slice(0, 1).toUpperCase();
+  // ================================================
+  return (
+    <div className="itemDiv" onDoubleClick={onContactSelect}>
+      {/* decoration */}
+      <span className="initialSpan" style={bgColor()}>
+        {initials}
+      </span>
+      {/* decoration */}
+      <p id="contactName">{contact.fName + ' ' + contact.lName}</p>
+      <span className="spanX" onClick={onContactDelete}>
+        x
+      </span>
+    </div>
+  );
 }
 
 export default ContactItem;
