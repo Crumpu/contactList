@@ -1,10 +1,9 @@
+import PropTypes, { object } from 'prop-types'
 import { useEffect, useState } from 'react';
 import './ContactForm.css';
 
 function ContactForm({ currentContact, onDelete, onSubmit }) {
   const [contact, setContact] = useState(currentContact);
-  console.log(currentContact);
-
   function createEmptyContact() {
     return {
       id: null,
@@ -110,5 +109,11 @@ function ContactForm({ currentContact, onDelete, onSubmit }) {
     </form>
   );
 }
+
+ContactForm.propTypes = {
+  currentContact: PropTypes.object,
+  onDelete: PropTypes.func,
+  onSubmit: PropTypes.func.isRequired,
+};
 
 export default ContactForm;
