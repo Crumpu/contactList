@@ -13,21 +13,11 @@
     {
       "id": 1714058790711,
       "fName": "Olga",
-      "lName": "Poliarush",
+      "lName": "Bichenock",
       "email": "olga@gmail.com",
       "telNumber": "+380660000001",
       "color": {
         "backgroundColor": "rgb(15, 117, 128)"
-      }
-    },
-    {
-      "id": 1714058826588,
-      "fName": "Anna",
-      "lName": "Pupkina",
-      "email": "pupkina@gmail.com",
-      "telNumber": "+380660000003",
-      "color": {
-        "backgroundColor": "rgb(92, 193, 183)"
       }
     },
     {
