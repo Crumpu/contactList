@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { nanoid } from 'nanoid';
 import ContactForm from './components/ContactForm/ContactForm';
 import ContactList from './components/ContactList/ContactList';
 import api from './api/contact-service';
@@ -70,10 +69,9 @@ function App() {
   // ============function createContact=======================
 
   const createContact = (contact) => {
-    contact.id = Date.now();
     contact.color = bgColor(contact);
     api.post('/', contact).then(({ data }) => {
-    const newContact = [...contacts, data]
+      const newContact = [...contacts, data];
       setContacts(newContact);
       setCurrentContacts(createEmptyContact());
     });
@@ -82,17 +80,10 @@ function App() {
   // ============function deleteContact=======================
 
   const deleteContact = (id) => {
-    api.delete(`/${id}`)
+    api.delete(`/${id}`);
     const newContact = contacts.filter((contact) => contact.id !== id);
-    saveToLocalStorage(newContact);
     setContacts(newContact);
     setCurrentContacts(createEmptyContact());
-  };
-
-  // ============function saveToLocalStorage=======================
-
-  const saveToLocalStorage = (arrContacts) => {
-    localStorage.setItem('contacts', JSON.stringify(arrContacts));
   };
 
   // ===========decoration========================================

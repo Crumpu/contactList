@@ -26,7 +26,7 @@ function ContactItem({ contact, onDelete, onSelect }) {
       {/* decoration */}
       <p id="contactName">{contact.fName + ' ' + contact.lName}</p>
       <span className="spanX" onClick={onContactDelete}>
-        x
+        &#10008;
       </span>
     </div>
   );

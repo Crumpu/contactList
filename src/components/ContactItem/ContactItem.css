@@ -28,6 +28,10 @@
   width: 3vw;
 }
 
+.spanX:hover{
+  color: rgb(209, 0, 0);
+}
+
 .initialSpan {
   display: flex;
   margin: 3px;
@@ -40,9 +44,4 @@
   align-items: center;
   font-size: 1em;
   font-weight: 600;
-}
-
-.buttonNew{
-  
-  display: flex;
 }

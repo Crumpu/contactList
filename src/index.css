@@ -21,15 +21,14 @@
     'b b b . c c c'
     'b b b . c c c'
     '. . . . . . .'
-    '. d . . . e .';
+    '. . . . . . .';
 }
 
 .contactList {
   grid-area: b;
   display: flex;
   flex-direction: column;
-  height: 50vh;
-  position: relative;
+  justify-content: space-between;
 }
 
 .formButtons > button {
@@ -37,7 +36,7 @@
 }
 
 .buttonNew {
-margin: auto;
+margin: 0 auto;
 }
 
 .listItems {
