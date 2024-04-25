@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { nanoid } from 'nanoid';
 import ContactForm from './components/ContactForm/ContactForm';
 import ContactList from './components/ContactList/ContactList';
+import api from './api/contact-service';
 import './App.css';
 
 function App() {
@@ -23,16 +24,15 @@ function App() {
 
   // ================get from storage================================
 
-  useEffect(getFromStorage, []);
-
-  function getFromStorage() {
-    const contacts = JSON.parse(localStorage.getItem('contacts'));
-    if (!contacts) {
-      setContacts([]);
-    } else {
-      setContacts(contacts);
-    }
-  }
+  useEffect(() => {
+    api.get('/').then(({ data }) => {
+      if (!data) {
+        setContacts([]);
+      } else {
+        setContacts(data);
+      }
+    });
+  }, []);
 
   // ==============function addNewContact========================
 
@@ -57,28 +57,32 @@ function App() {
   // ============function updateContact=========================
 
   function updateContact(contact) {
-    const updateContacts = contacts.map((item) =>
-      item.id === contact.id ? contact : item
-    );
-    saveToLocalStorage(updateContacts);
-    setContacts(updateContacts);
-    setCurrentContacts(contact);
+    api.put(`/${contact.id}`, contact).then(({ data }) => {
+      setContacts(
+        contacts.map((item) => {
+          return contact.id === item.id ? contact : item;
+        })
+      );
+      setCurrentContacts(data);
+    });
   }
 
   // ============function createContact=======================
 
   const createContact = (contact) => {
-    contact.id = nanoid();
+    contact.id = Date.now();
     contact.color = bgColor(contact);
-    const newContact = [...contacts, contact];
-    saveToLocalStorage(newContact);
-    setContacts(newContact);
-    setCurrentContacts(createEmptyContact());
+    api.post('/', contact).then(({ data }) => {
+    const newContact = [...contacts, data]
+      setContacts(newContact);
+      setCurrentContacts(createEmptyContact());
+    });
   };
 
   // ============function deleteContact=======================
 
   const deleteContact = (id) => {
+    api.delete(`/${id}`)
     const newContact = contacts.filter((contact) => contact.id !== id);
     saveToLocalStorage(newContact);
     setContacts(newContact);
@@ -113,7 +117,6 @@ function App() {
       </div>
       <div className="appDiv">
         <ContactList
-          key={currentContact.id}
           contacts={contacts}
           addNewContact={addNewContact}
           onDelete={deleteContact}

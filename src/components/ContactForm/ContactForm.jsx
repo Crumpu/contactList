@@ -1,4 +1,4 @@
-import PropTypes, { object } from 'prop-types'
+import PropTypes from 'prop-types'
 import { useEffect, useState } from 'react';
 import './ContactForm.css';
 
