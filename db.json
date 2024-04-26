@@ -21,16 +21,6 @@
       }
     },
     {
-      "id": 1714058809650,
-      "fName": "Eugene",
-      "lName": "Pupkin",
-      "email": "pupkin@gmail.com",
-      "telNumber": "+380660000002",
-      "color": {
-        "backgroundColor": "rgb(46, 135, 47)"
-      }
-    },
-    {
       "id": 1714058826588,
       "fName": "Anna",
       "lName": "Pupkina",
@@ -41,23 +31,33 @@
       }
     },
     {
-      "id": 1714058877787,
-      "fName": "Mom",
+      "id": 1714058877790,
+      "fName": "Мама",
       "lName": "",
-      "email": "polarus@gmail.com",
-      "telNumber": "+380660000004",
+      "email": "",
+      "telNumber": "",
       "color": {
-        "backgroundColor": "rgb(65, 105, 203)"
+        "backgroundColor": "rgb(124, 142, 4)"
       }
     },
     {
-      "id": 1714058877788,
-      "fName": "Dad",
+      "id": 1714058877791,
+      "fName": "Папа",
       "lName": "",
-      "email": "polarus@gmail.com",
-      "telNumber": "+380660000005",
+      "email": "",
+      "telNumber": "",
       "color": {
-        "backgroundColor": "rgb(160, 130, 210)"
+        "backgroundColor": "rgb(89, 136, 174)"
+      }
+    },
+    {
+      "id": 1714058877792,
+      "fName": "Евгений ",
+      "lName": "Халин",
+      "email": "",
+      "telNumber": "",
+      "color": {
+        "backgroundColor": "rgb(175, 29, 8)"
       }
     }
   ]

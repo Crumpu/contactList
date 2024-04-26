@@ -107,6 +107,7 @@ function App() {
         <h1>Contact List</h1>
       </div>
       <div className="appDiv">
+
         <ContactList
           contacts={contacts}
           addNewContact={addNewContact}

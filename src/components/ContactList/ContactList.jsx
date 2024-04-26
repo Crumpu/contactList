@@ -1,10 +1,16 @@
 import ContactItem from '../ContactItem/ContactItem';
+import ScaleLoader from 'react-spinners/ScaleLoader';
 import PropTypes from 'prop-types';
 
 function ContactList({ contacts, addNewContact, onDelete, onSelect }) {
   return (
     <div className="contactList">
       <div className="listItems">
+        {contacts.length === 0 && (
+          <div className="spinner">
+            <ScaleLoader color="blue" />
+          </div>
+        )}
         {contacts.map((contact) => {
           return (
             <ContactItem

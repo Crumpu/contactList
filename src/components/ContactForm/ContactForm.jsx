@@ -49,55 +49,58 @@ function ContactForm({ currentContact, onDelete, onSubmit }) {
 
   return (
     <form id="contactItemForm" onSubmit={onFormSubmit}>
-      <div className="inputDiv">
-        <input
-          type="text"
-          name="fName"
-          placeholder="First name"
-          value={contact.fName}
-          onChange={onInputChange}
-        />
-        <span className="clearInput" onClick={onClearInput}>
-          x
-        </span>
-      </div>
-      <div className="inputDiv">
-        <input
-          type="text"
-          name="lName"
-          placeholder="Last name"
-          value={contact.lName}
-          onChange={onInputChange}
-        />
-        <span className="clearInput" onClick={onClearInput}>
-          x
-        </span>
+      <div className="inputithDiv">
+        <div className="inputDiv">
+          <input
+            type="text"
+            name="fName"
+            placeholder="First name"
+            value={contact.fName}
+            onChange={onInputChange}
+          />
+          <span className="clearInput" onClick={onClearInput}>
+            &#10008;
+          </span>
+        </div>
+        <div className="inputDiv">
+          <input
+            type="text"
+            name="lName"
+            placeholder="Last name"
+            value={contact.lName}
+            onChange={onInputChange}
+          />
+          <span className="clearInput" onClick={onClearInput}>
+            &#10008;
+          </span>
+        </div>
+
+        <div className="inputDiv">
+          <input
+            type="email"
+            name="email"
+            placeholder="Email"
+            value={contact.email}
+            onChange={onInputChange}
+          />
+          <span className="clearInput" onClick={onClearInput}>
+            &#10008;
+          </span>
+        </div>
+        <div className="inputDiv">
+          <input
+            type="tel"
+            placeholder="Phone number"
+            name="telNumber"
+            value={contact.telNumber}
+            onChange={onInputChange}
+          />
+          <span className="clearInput" onClick={onClearInput}>
+            &#10008;
+          </span>
+        </div>
       </div>
 
-      <div className="inputDiv">
-        <input
-          type="email"
-          name="email"
-          placeholder="Email"
-          value={contact.email}
-          onChange={onInputChange}
-        />
-        <span className="clearInput" onClick={onClearInput}>
-          x
-        </span>
-      </div>
-      <div className="inputDiv">
-        <input
-          type="tel"
-          placeholder="Phone number"
-          name="telNumber"
-          value={contact.telNumber}
-          onChange={onInputChange}
-        />
-        <span className="clearInput" onClick={onClearInput}>
-          x
-        </span>
-      </div>
       <div className="formButtons">
         <button type="submit">Save</button>
         {!currentContact.id ? (

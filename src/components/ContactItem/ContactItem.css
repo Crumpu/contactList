@@ -16,6 +16,7 @@
   display: flex;
   align-items: center;
   margin: 0 1vw;
+  min-width: max-content;
 }
 
 .spanX {
@@ -28,7 +29,7 @@
   width: 3vw;
 }
 
-.spanX:hover{
+.spanX:hover {
   color: rgb(209, 0, 0);
 }
 
@@ -44,4 +45,10 @@
   align-items: center;
   font-size: 1em;
   font-weight: 600;
+}
+
+.spinner {
+  display: flex;
+  align-items: center;
+  height: 50%;
 }

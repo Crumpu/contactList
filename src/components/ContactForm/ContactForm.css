@@ -4,6 +4,12 @@
   margin: 3vh;
 }
 
+#contactItemForm{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
 .clearInput {
   color: rgba(0, 0, 0, 0.5);
   font-weight: 700;
