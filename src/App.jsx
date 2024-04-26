@@ -60,7 +60,7 @@ function App() {
       console.log(data);
       setContacts(
         contacts.map((item) => {
-          return data.id === item.id ? contact : item;
+          return data.id === item.id ? data : item;
         })
       );
       setCurrentContacts(data);
