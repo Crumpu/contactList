@@ -6,25 +6,29 @@ function ContactItem({ contact, onDelete, onSelect }) {
     onSelect(contact);
   };
 
+  console.log(contact)
+
+const {id, fName, lName, color } = contact
+
   const onContactDelete = (event) => {
     event.stopPropagation();
-    onDelete(contact.id);
+    onDelete(id);
   };
 
   // ===================decoration===================
 
   const initials =
-    contact.fName.trim().slice(0, 1).toUpperCase() +
-    contact.lName.trim().slice(0, 1).toUpperCase();
+   fName.trim().slice(0, 1).toUpperCase() +
+   lName.trim().slice(0, 1).toUpperCase();
   // ================================================
   return (
     <div className="itemDiv" onDoubleClick={onContactSelect}>
       {/* decoration */}
-      <span className="initialSpan" style={contact.color}>
+      <span className="initialSpan" style={{ backgroundColor: color }}>
         {initials}
       </span>
       {/* decoration */}
-      <p id="contactName">{contact.fName + ' ' + contact.lName}</p>
+      <p id="contactName">{fName + ' ' + lName}</p>
       <span className="spanX" onClick={onContactDelete}>
         &#10008;
       </span>

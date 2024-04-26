@@ -57,9 +57,10 @@ function App() {
 
   function updateContact(contact) {
     api.put(`/${contact.id}`, contact).then(({ data }) => {
+      console.log(data);
       setContacts(
         contacts.map((item) => {
-          return contact.id === item.id ? contact : item;
+          return data.id === item.id ? contact : item;
         })
       );
       setCurrentContacts(data);
@@ -94,11 +95,8 @@ function App() {
     return color;
   };
 
-  const bgColor = (contact) => {
-    return (contact.color = {
-      backgroundColor: `rgb(${randomColor()}, ${randomColor()}, ${randomColor()})`,
-    });
-  };
+  const bgColor = () =>
+    `rgb(${randomColor()}, ${randomColor()}, ${randomColor()})`;
   // -------------------------------------------------------------
 
   return (
@@ -107,7 +105,6 @@ function App() {
         <h1>Contact List</h1>
       </div>
       <div className="appDiv">
-
         <ContactList
           contacts={contacts}
           addNewContact={addNewContact}

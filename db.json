@@ -1,54 +1,52 @@
 {
   "contacts": [
     {
-      "id": 1714057905456,
+      "id": 1,
       "fName": "Denis",
       "lName": "Poliarush",
       "email": "denis@gmail.com",
       "telNumber": "+380660000000",
-      "color": {
-        "backgroundColor": "rgb(192, 83, 198)"
-      }
+      "color": "rgb(58, 160, 65)"
     },
     {
-      "id": 1714058790711,
+      "id": 2,
       "fName": "Olga",
-      "lName": "Bichenock",
-      "email": "olga@gmail.com",
+      "lName": "Bichenok",
+      "email": "",
       "telNumber": "+380660000001",
-      "color": {
-        "backgroundColor": "rgb(15, 117, 128)"
-      }
+      "color": "rgb(217, 147, 88)"
     },
     {
-      "id": 1714058877790,
-      "fName": "Мама",
+      "id": 3,
+      "fName": "Eugene",
+      "lName": "Pupkin",
+      "email": "pupkin@gmail.com",
+      "telNumber": "+380660000002",
+      "color": "rgb(107, 94, 205)"
+    },
+    {
+      "id": 4,
+      "fName": "Anna",
+      "lName": "Pupkin",
+      "email": "pupkina@gmail.com",
+      "telNumber": "+380660000003",
+      "color": "rgb(23, 130, 15)"
+    },
+    {
+      "id": 5,
+      "fName": "Mom",
       "lName": "",
-      "email": "",
-      "telNumber": "",
-      "color": {
-        "backgroundColor": "rgb(124, 142, 4)"
-      }
+      "email": "polarus@gmail.com",
+      "telNumber": "+380660000004",
+      "color": "rgb(143, 138, 100)"
     },
     {
-      "id": 1714058877791,
-      "fName": "Папа",
+      "id": 6,
+      "fName": "Dad",
       "lName": "",
-      "email": "",
-      "telNumber": "",
-      "color": {
-        "backgroundColor": "rgb(89, 136, 174)"
-      }
-    },
-    {
-      "id": 1714058877792,
-      "fName": "Евгений ",
-      "lName": "Халин",
-      "email": "",
-      "telNumber": "",
-      "color": {
-        "backgroundColor": "rgb(175, 29, 8)"
-      }
+      "email": "polarus@gmail.com",
+      "telNumber": "+380660000005",
+      "color": "rgb(109, 45, 47)"
     }
   ]
 }
