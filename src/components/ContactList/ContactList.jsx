@@ -1,43 +1,31 @@
 import ContactItem from '../ContactItem/ContactItem';
-import ScaleLoader from 'react-spinners/ScaleLoader';
-import PropTypes from 'prop-types';
+import { getContacts } from '../../store/actions/contactsActions';
+import { connect } from 'react-redux';
+import api from '../../api/contact-service';
+import { useEffect } from 'react';
 
-function ContactList({ contacts, addNewContact, onDelete, onSelect }) {
+function ContactList({ contacts }) {
+  console.log(contacts);
+
+  useEffect(() => {
+    api.get('/').then(({ data }) => getContacts(data));
+  }, []);
+
   return (
     <div className="contactList">
       <div className="listItems">
-        {contacts.length === 0 && (
-          <div className="spinner">
-            <ScaleLoader color="blue" />
-          </div>
-        )}
         {contacts.map((contact) => {
-          return (
-            <ContactItem
-              key={contact.id}
-              contact={contact}
-              onDelete={onDelete}
-              onSelect={onSelect}
-            />
-          );
+          return <ContactItem key={contact.id} contact={contact} />;
         })}
       </div>
-      <button onClick={addNewContact} className="buttonNew">
-        New
-      </button>
+      <button className="buttonNew">New</button>
     </div>
   );
 }
 
-ContactList.defaultProps = {
-  contacts: [],
+const mapStateToProps = ({ contacts }) => ({ contacts });
+const mapDispatchToProps = {
+  getContacts,
 };
 
-ContactList.propTypes = {
-  contacts: PropTypes.array,
-  addNewContact: PropTypes.func,
-  onDelete: PropTypes.func,
-  onSelect: PropTypes.func,
-};
-
-export default ContactList;
+export default connect(mapStateToProps, mapDispatchToProps)(ContactList);

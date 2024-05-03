@@ -1,18 +1,18 @@
-import PropTypes from 'prop-types';
+
+import { connect } from 'react-redux';
+import { delContact, selectContact } from '../../store/actions/contactsActions';
 import './ContactItem.css';
 
-function ContactItem({ contact, onDelete, onSelect }) {
+function ContactItem({ contact,  }) {
   const onContactSelect = () => {
-    onSelect(contact);
+    selectContact(contact);
   };
-
-  console.log(contact)
 
 const {id, fName, lName, color } = contact
 
   const onContactDelete = (event) => {
     event.stopPropagation();
-    onDelete(id);
+    delContact(id);
   };
 
   // ===================decoration===================
@@ -36,10 +36,10 @@ const {id, fName, lName, color } = contact
   );
 }
 
-ContactItem.propTypes = {
-  contact: PropTypes.object,
-  onDelete: PropTypes.func,
-  onSelect: PropTypes.func,
-};
+const mapDispatchToProps = {
+  delContact,
+  selectContact,
+}
 
-export default ContactItem;
+
+export default connect(null, mapDispatchToProps)(ContactItem);

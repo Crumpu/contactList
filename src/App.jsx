@@ -1,103 +1,101 @@
-import { useEffect, useState } from 'react';
 import ContactForm from './components/ContactForm/ContactForm';
 import ContactList from './components/ContactList/ContactList';
-import api from './api/contact-service';
 import './App.css';
 
 function App() {
-  const [contacts, setContacts] = useState([]);
-  const [currentContact, setCurrentContacts] = useState(createEmptyContact());
+  // const [contacts, setContacts] = useState([]);
+  // const [currentContact, setCurrentContacts] = useState(createEmptyContact());
 
-  // ====================function createEmptyContact==============
+  // // ====================function createEmptyContact==============
 
-  function createEmptyContact() {
-    return {
-      id: null,
-      fName: '',
-      lName: '',
-      email: '',
-      telNumber: '',
-      color: '',
-    };
-  }
+  // function createEmptyContact() {
+  //   return {
+  //     id: null,
+  //     fName: '',
+  //     lName: '',
+  //     email: '',
+  //     telNumber: '',
+  //     color: '',
+  //   };
+  // }
 
-  // ================get from storage================================
+  // // ================get from storage================================
 
-  useEffect(() => {
-    api.get('/').then(({ data }) => {
-      if (!data) {
-        setContacts([]);
-      } else {
-        setContacts(data);
-      }
-    });
-  }, []);
+  // useEffect(() => {
+  //   api.get('/').then(({ data }) => {
+  //     if (!data) {
+  //       setContacts([]);
+  //     } else {
+  //       setContacts(data);
+  //     }
+  //   });
+  // }, []);
 
-  // ==============function addNewContact========================
+  // // ==============function addNewContact========================
 
-  const addNewContact = () => {
-    setCurrentContacts(createEmptyContact());
-  };
+  // const addNewContact = () => {
+  //   setCurrentContacts(createEmptyContact());
+  // };
 
-  // ============function selectContact========================
+  // // ============function selectContact========================
 
-  const selectContact = (contact) => setCurrentContacts(contact);
+  // const selectContact = (contact) => setCurrentContacts(contact);
 
-  // ============function saveContact===========================
+  // // ============function saveContact===========================
 
-  const saveContact = (contact) => {
-    if (contact.id) {
-      updateContact(contact);
-    } else {
-      createContact(contact);
-    }
-  };
+  // const saveContact = (contact) => {
+  //   if (contact.id) {
+  //     updateContact(contact);
+  //   } else {
+  //     createContact(contact);
+  //   }
+  // };
 
-  // ============function updateContact=========================
+  // // ============function updateContact=========================
 
-  function updateContact(contact) {
-    api.put(`/${contact.id}`, contact).then(({ data }) => {
-      console.log(data);
-      setContacts(
-        contacts.map((item) => {
-          return data.id === item.id ? data : item;
-        })
-      );
-      setCurrentContacts(data);
-    });
-  }
+  // function updateContact(contact) {
+  //   api.put(`/${contact.id}`, contact).then(({ data }) => {
+  //     console.log(data);
+  //     setContacts(
+  //       contacts.map((item) => {
+  //         return data.id === item.id ? data : item;
+  //       })
+  //     );
+  //     setCurrentContacts(data);
+  //   });
+  // }
 
-  // ============function createContact=======================
+  // // ============function createContact=======================
 
-  const createContact = (contact) => {
-    contact.color = bgColor(contact);
-    api.post('/', contact).then(({ data }) => {
-      const newContact = [...contacts, data];
-      setContacts(newContact);
-      setCurrentContacts(createEmptyContact());
-    });
-  };
+  // const createContact = (contact) => {
+  //   contact.color = bgColor(contact);
+  //   api.post('/', contact).then(({ data }) => {
+  //     const newContact = [...contacts, data];
+  //     setContacts(newContact);
+  //     setCurrentContacts(createEmptyContact());
+  //   });
+  // };
 
-  // ============function deleteContact=======================
+  // // ============function deleteContact=======================
 
-  const deleteContact = (id) => {
-    api.delete(`/${id}`);
-    const newContact = contacts.filter((contact) => contact.id !== id);
-    setContacts(newContact);
-    setCurrentContacts(createEmptyContact());
-  };
+  // const deleteContact = (id) => {
+  //   api.delete(`/${id}`);
+  //   const newContact = contacts.filter((contact) => contact.id !== id);
+  //   setContacts(newContact);
+  //   setCurrentContacts(createEmptyContact());
+  // };
 
-  // ===========decoration========================================
-  const randomColor = () => {
-    const min = 0;
-    const max = 225;
-    const color = Math.floor(Math.random() * (max - min) + min);
-    return color;
-  };
+  // // ===========decoration========================================
+  // const randomColor = () => {
+  //   const min = 0;
+  //   const max = 225;
+  //   const color = Math.floor(Math.random() * (max - min) + min);
+  //   return color;
+  // };
 
-  const bgColor = () =>
-    `rgb(${randomColor()}, ${randomColor()}, ${randomColor()})`;
-  // -------------------------------------------------------------
+  // const bgColor = () =>
+  //   `rgb(${randomColor()}, ${randomColor()}, ${randomColor()})`;
+  // // -------------------------------------------------------------
 
   return (
     <>
@@ -105,17 +103,8 @@ function App() {
         <h1>Contact List</h1>
       </div>
       <div className="appDiv">
-        <ContactList
-          contacts={contacts}
-          addNewContact={addNewContact}
-          onDelete={deleteContact}
-          onSelect={selectContact}
-        />
-        <ContactForm
-          onSubmit={saveContact}
-          currentContact={currentContact}
-          onDelete={deleteContact}
-        />
+        <ContactList />
+        <ContactForm />
       </div>
     </>
   );
