@@ -1,25 +1,28 @@
-
-import { connect } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import api from '../../api/contact-service';
 import { delContact, selectContact } from '../../store/actions/contactsActions';
 import './ContactItem.css';
 
-function ContactItem({ contact,  }) {
-  const onContactSelect = () => {
-    selectContact(contact);
-  };
+function ContactItem({ contact }) {
+  const dispatch = useDispatch();
 
-const {id, fName, lName, color } = contact
+  const { id, fName, lName, color } = contact;
+
+  const onContactSelect = () => {
+    dispatch(selectContact(contact));
+  };
 
   const onContactDelete = (event) => {
     event.stopPropagation();
-    delContact(id);
+    api.delete(`/${id}`).then((data) => console.log(data))
+    dispatch(delContact(id));
   };
 
   // ===================decoration===================
 
   const initials =
-   fName.trim().slice(0, 1).toUpperCase() +
-   lName.trim().slice(0, 1).toUpperCase();
+    fName.trim().slice(0, 1).toUpperCase() +
+    lName.trim().slice(0, 1).toUpperCase();
   // ================================================
   return (
     <div className="itemDiv" onDoubleClick={onContactSelect}>
@@ -36,10 +39,4 @@ const {id, fName, lName, color } = contact
   );
 }
 
-const mapDispatchToProps = {
-  delContact,
-  selectContact,
-}
-
-
-export default connect(null, mapDispatchToProps)(ContactItem);
+export default ContactItem;

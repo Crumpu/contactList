@@ -1,26 +1,31 @@
-// import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
+import {
+  createContact,
+  delContact,
+  updateContact,
+} from '../../store/actions/contactsActions';
+import api from '../../api/contact-service';
+import { useSelector, useDispatch } from 'react-redux';
 import './ContactForm.css';
 
-function ContactForm({ currentContact, onDelete, onSubmit }) {
+function ContactForm() {
+  const dispatch = useDispatch();
+
+  const currentContact = useSelector((state) => state.currentContact);
+
   const [contact, setContact] = useState(currentContact);
-  function createEmptyContact() {
-    return {
-      id: null,
-      fName: '',                                       
-      lName: '',
-      email: '',
-      telNumber: '',
-    };
-  }
 
   useEffect(() => {
-    setContact({ ...currentContact });
+    setContact(currentContact);
   }, [currentContact]);
 
   const onContactDelete = (event) => {
     event.preventDefault();
-    onDelete(contact.id);
+    api
+      .delete(`/${contact.id}`)
+      .then((statusText) => console.log(statusText))
+      .catch((error) => console.log(error));
+    dispatch(delContact(contact.id));
   };
 
   const onInputChange = (event) => {
@@ -41,9 +46,12 @@ function ContactForm({ currentContact, onDelete, onSubmit }) {
 
   const onFormSubmit = (event) => {
     event.preventDefault();
-    onSubmit(contact);
-    if (!contact.id) {
-      setContact(createEmptyContact());
+    if (contact.id) {
+      api
+        .put(`/${contact.id}`, contact)
+        .then(({ data }) => dispatch(updateContact(data)));
+    } else {
+      api.post('/', contact).then(({ data }) => dispatch(createContact(data)));
     }
   };
 
