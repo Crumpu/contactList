@@ -10,11 +10,11 @@ function ContactList() {
 
   useEffect(() => {
     api.get('/').then(({ data }) => dispatch(getContacts(data)));
-  }, [dispatch]);
+  });
 
   const addNewContact = () => {
-  dispatch(addContact())
-}
+    dispatch(addContact());
+  };
 
   return (
     <div className="contactList">

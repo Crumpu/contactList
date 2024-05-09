@@ -12,12 +12,13 @@ function ContactForm() {
   const dispatch = useDispatch();
 
   const currentContact = useSelector((state) => state.currentContact);
-
   const [contact, setContact] = useState(currentContact);
 
   useEffect(() => {
     setContact(currentContact);
   }, [currentContact]);
+
+// -------------function for delete contact-----------------
 
   const onContactDelete = (event) => {
     event.preventDefault();
@@ -28,6 +29,8 @@ function ContactForm() {
     dispatch(delContact(contact.id));
   };
 
+// -----------------Control inputs--------------------------
+
   const onInputChange = (event) => {
     const { name, value } = event.target;
     setContact({
@@ -35,6 +38,8 @@ function ContactForm() {
       [name]: value,
     });
   };
+
+// -------------------clearInput-----------------------------
 
   const onClearInput = (event) => {
     const sibling = event.target.previousSibling;
@@ -44,6 +49,8 @@ function ContactForm() {
     });
   };
 
+// --------Function for create and update contact------------
+
   const onFormSubmit = (event) => {
     event.preventDefault();
     if (contact.id) {
@@ -51,10 +58,22 @@ function ContactForm() {
         .put(`/${contact.id}`, contact)
         .then(({ data }) => dispatch(updateContact(data)));
     } else {
+      contact.color = bgColor();
       api.post('/', contact).then(({ data }) => dispatch(createContact(data)));
     }
   };
+// -----------------decoration----------------------------------
+  const randomColor = () => {
+    const min = 0;
+    const max = 225;
+    const color = Math.floor(Math.random() * (max - min) + min);
+    return color;
+  };
 
+  const bgColor = () =>
+    `rgb(${randomColor()}, ${randomColor()}, ${randomColor()})`;
+  
+// --------------------------------------------------------------
   return (
     <form id="contactItemForm" onSubmit={onFormSubmit}>
       <div className="inputithDiv">
