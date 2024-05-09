@@ -3,7 +3,7 @@
     {
       "id": 1,
       "fName": "Денис",
-      "lName": "",
+      "lName": "Поляруш",
       "email": "",
       "telNumber": "+380660000000",
       "color": "rgb(110, 100, 173)"
@@ -11,7 +11,7 @@
     {
       "id": 2,
       "fName": "Ольга",
-      "lName": "",
+      "lName": "Быченок",
       "email": "",
       "telNumber": "+380660000001",
       "color": "rgb(23, 215, 190)"
@@ -47,14 +47,6 @@
       "email": "",
       "telNumber": "+380660000005",
       "color": "rgb(181, 70, 73)"
-    },
-    {
-      "id": 7,
-      "fName": "hstysh",
-      "lName": "",
-      "email": "",
-      "telNumber": "",
-      "color": "rgb(14, 160, 104)"
     }
   ]
 }
