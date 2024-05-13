@@ -1,52 +1,20 @@
 {
   "contacts": [
     {
-      "id": 1,
+      "id": 7,
       "fName": "Денис",
       "lName": "Поляруш",
       "email": "",
-      "telNumber": "+380660000000",
-      "color": "rgb(110, 100, 173)"
+      "telNumber": "",
+      "color": "rgb(198, 40, 100)"
     },
     {
-      "id": 2,
-      "fName": "Ольга",
+      "id": 8,
+      "fName": "Оля",
       "lName": "Быченок",
       "email": "",
-      "telNumber": "+380660000001",
-      "color": "rgb(23, 215, 190)"
-    },
-    {
-      "id": 3,
-      "fName": "Евгений",
-      "lName": "Пупкин",
-      "email": "",
-      "telNumber": "+380660000002",
-      "color": "rgb(123, 224, 140)"
-    },
-    {
-      "id": 4,
-      "fName": "Анна ",
-      "lName": "Пупкина ",
-      "email": "",
-      "telNumber": "+380660000003",
-      "color": "rgb(12, 196, 211)"
-    },
-    {
-      "id": 5,
-      "fName": "Мама",
-      "lName": "",
-      "email": "",
-      "telNumber": "+380660000004",
-      "color": "rgb(65, 31, 37)"
-    },
-    {
-      "id": 6,
-      "fName": "Папа",
-      "lName": "",
-      "email": "",
-      "telNumber": "+380660000005",
-      "color": "rgb(181, 70, 73)"
+      "telNumber": "",
+      "color": "rgb(82, 62, 29)"
     }
   ]
 }

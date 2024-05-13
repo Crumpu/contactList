@@ -21,13 +21,15 @@ export default function contactsReducer(
       return {
         ...state,
         contacts: state.contacts.filter((contact) => payload !== contact.id),
-        currentContact: createEmptyContact(),
+        currentContact: state.contacts.map((contact) =>
+          contact.id === payload ? createEmptyContact() : ''
+        ),
       };
     case ACTION_TYPES.UPDATE_CONTACT:
       return {
         ...state,
         contacts: state.contacts.map((contact) =>
-          contact.id === payload ? { ...contact } : contact
+          contact.id === payload.id ? payload : contact
         ),
       };
     case ACTION_TYPES.SELECT_CONTACT:

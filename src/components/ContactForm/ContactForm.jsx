@@ -11,7 +11,7 @@ import './ContactForm.css';
 function ContactForm() {
   const dispatch = useDispatch();
 
-  const currentContact = useSelector((state) => state.currentContact);
+  let currentContact = useSelector((state) => state.currentContact);
   const [contact, setContact] = useState(currentContact);
 
   useEffect(() => {
