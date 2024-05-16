@@ -1,6 +1,8 @@
 import ContactItem from '../ContactItem/ContactItem';
-import { getContacts, addContact } from '../../store/actions/contactsActions';
-import api from '../../api/contact-service';
+import {
+  getContactsAction,
+  addContactAction,
+} from '../../store/actions/contactsActions';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -9,11 +11,11 @@ function ContactList() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    api.get('/').then(({ data }) => dispatch(getContacts(data)));
+    dispatch(getContactsAction());
   }, [dispatch]);
 
   const addNewContact = () => {
-    dispatch(addContact());
+    dispatch(addContactAction());
   };
 
   return (
