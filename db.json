@@ -10,11 +10,27 @@
     },
     {
       "id": 8,
-      "fName": "Оля",
-      "lName": "Быченок",
+      "fName": "Olga",
+      "lName": "Bichenok",
       "email": "",
-      "telNumber": "",
-      "color": "rgb(82, 62, 29)"
+      "telNumber": "+380660000001",
+      "color": "rgb(59, 175, 96)"
+    },
+    {
+      "id": 9,
+      "fName": "Eugene",
+      "lName": "Pupkin",
+      "email": "",
+      "telNumber": "+380660000002",
+      "color": "rgb(139, 99, 47)"
+    },
+    {
+      "id": 10,
+      "fName": "Anna",
+      "lName": "Pupkina",
+      "email": "",
+      "telNumber": "+380660000003",
+      "color": "rgb(175, 164, 97)"
     }
   ]
 }

@@ -1,6 +1,8 @@
 import { useDispatch } from 'react-redux';
-import api from '../../api/contact-service';
-import { delContact, selectContact } from '../../store/actions/contactsActions';
+import {
+  delContactAction,
+  selectContactAction,
+} from '../../store/actions/contactsActions';
 import './ContactItem.css';
 
 function ContactItem({ contact }) {
@@ -9,13 +11,12 @@ function ContactItem({ contact }) {
   const { id, fName, lName, color } = contact;
 
   const onContactSelect = () => {
-    dispatch(selectContact(contact));
+    dispatch(selectContactAction(contact));
   };
 
   const onContactDelete = (event) => {
     event.stopPropagation();
-    api.delete(`/${id}`).then((data) => console.log(data))
-    dispatch(delContact(id));
+    dispatch(delContactAction(id));
   };
 
   // ===================decoration===================
@@ -33,7 +34,7 @@ function ContactItem({ contact }) {
       {/* decoration */}
       <p id="contactName">{fName + ' ' + lName}</p>
       <span className="spanX" onClick={onContactDelete}>
-        &#10008;
+        &#10006;
       </span>
     </div>
   );
