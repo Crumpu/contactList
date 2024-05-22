@@ -14,7 +14,6 @@
   "dependencies": {
     "@redux-devtools/extension": "^3.3.0",
     "axios": "^1.6.8",
-    "concurrently": "^8.2.2",
     "nanoid": "^5.0.7",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
@@ -29,6 +28,7 @@
     "@types/react": "^18.2.66",
     "@types/react-dom": "^18.2.22",
     "@vitejs/plugin-react": "^4.2.1",
+    "concurrently": "^8.2.2",
     "eslint": "^8.57.0",
     "eslint-plugin-react": "^7.34.1",
     "eslint-plugin-react-hooks": "^4.6.0",

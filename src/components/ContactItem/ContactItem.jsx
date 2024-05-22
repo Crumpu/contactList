@@ -1,8 +1,10 @@
 import { useDispatch } from 'react-redux';
+// ======================================
 import {
   delContactAction,
   selectContactAction,
 } from '../../store/actions/contactsActions';
+// ======================================
 import './ContactItem.css';
 
 function ContactItem({ contact }) {

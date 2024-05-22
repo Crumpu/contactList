@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+// ===================================================
 import {
   createContactAction,
   delContactAction,
   updateContactAction,
 } from '../../store/actions/contactsActions';
-import api from '../../api/contact-service';
-import { useSelector, useDispatch } from 'react-redux';
+// ===================================================
 import './ContactForm.css';
 
 function ContactForm() {

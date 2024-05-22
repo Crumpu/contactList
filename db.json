@@ -4,7 +4,7 @@
       "id": 7,
       "fName": "Денис",
       "lName": "Поляруш",
-      "email": "",
+      "email": "denis@gmail.com",
       "telNumber": "+380660000000",
       "color": "rgb(198, 40, 100)"
     },
@@ -22,7 +22,7 @@
       "lName": "Pupkin",
       "email": "",
       "telNumber": "+380660000002",
-      "color": "rgb(139, 99, 47)"
+      "color": "rgb(181, 97, 103)"
     },
     {
       "id": 10,
@@ -30,7 +30,7 @@
       "lName": "Pupkina",
       "email": "",
       "telNumber": "+380660000003",
-      "color": "rgb(187, 60, 3)"
+      "color": "rgb(155, 223, 18)"
     }
   ]
 }

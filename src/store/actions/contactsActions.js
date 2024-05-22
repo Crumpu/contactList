@@ -2,10 +2,10 @@ import ACTION_TYPES from './actionTypes';
 
 //  Creating
 
-export const createContactAction = (id) => {
+export const createContactAction = (contact) => {
   return {
     type: ACTION_TYPES.POST_CONTACT_ACTION,
-    payload: id,
+    payload: contact,
   };
 };
 
@@ -36,10 +36,10 @@ export const delContactAction = (id) => {
   };
 };
 
-export const delContactRequest = (id) => {
+export const delContactRequest = () => {
   return {
     type: ACTION_TYPES.DELETE_CONTACT_REQUEST,
-    payload: id,
+
   };
 };
 
@@ -75,10 +75,9 @@ export const updateContactAction = (contact) => {
   };
 };
 
-export const updateContactRequest = (contact) => {
+export const updateContactRequest = () => {
   return {
     type: ACTION_TYPES.PUT_CONTACT_REQUEST,
-    payload: contact,
   };
 };
 

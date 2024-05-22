@@ -1,10 +1,11 @@
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+// ====================================================
 import ContactItem from '../ContactItem/ContactItem';
 import {
   getContactsAction,
   addContactAction,
 } from '../../store/actions/contactsActions';
-import { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
 
 function ContactList() {
   const contacts = useSelector((state) => state.contacts);
