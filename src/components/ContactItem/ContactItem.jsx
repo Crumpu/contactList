@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import {
   delContactAction,
   selectContactAction,
-} from '../../store/actions/contactsActions';
+} from '../../store/slices/contactsActions';
 // ======================================
 import './ContactItem.css';
 

@@ -5,7 +5,7 @@ import {
   createContactAction,
   delContactAction,
   updateContactAction,
-} from '../../store/actions/contactsActions';
+} from '../../store/slices/contactsActions';
 // ===================================================
 import './ContactForm.css';
 

@@ -5,7 +5,7 @@ import ContactItem from '../ContactItem/ContactItem';
 import {
   getContactsAction,
   addContactAction,
-} from '../../store/actions/contactsActions';
+} from '../../store/slices/contactsActions';
 
 function ContactList() {
   const contacts = useSelector((state) => state.contacts);
