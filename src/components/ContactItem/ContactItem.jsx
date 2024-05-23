@@ -1,9 +1,6 @@
 import { useDispatch } from 'react-redux';
 // ======================================
-import {
-  delContactAction,
-  selectContactAction,
-} from '../../store/slices/contactsActions';
+import { delContact, selectContact } from '../../store/slices/contactSlice';
 // ======================================
 import './ContactItem.css';
 
@@ -13,12 +10,12 @@ function ContactItem({ contact }) {
   const { id, fName, lName, color } = contact;
 
   const onContactSelect = () => {
-    dispatch(selectContactAction(contact));
+    dispatch(selectContact(contact));
   };
 
   const onContactDelete = (event) => {
     event.stopPropagation();
-    dispatch(delContactAction(id));
+    dispatch(delContact(id));
   };
 
   // ===================decoration===================

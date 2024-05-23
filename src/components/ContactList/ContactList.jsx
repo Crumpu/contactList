@@ -2,21 +2,20 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 // ====================================================
 import ContactItem from '../ContactItem/ContactItem';
-import {
-  getContactsAction,
-  addContactAction,
-} from '../../store/slices/contactsActions';
+import { getContacts, addContact } from '../../store/slices/contactSlice';
 
 function ContactList() {
-  const contacts = useSelector((state) => state.contacts);
+  const contacts = useSelector((state) => state.contactList.contacts);
   const dispatch = useDispatch();
 
+  console.log(contacts)
+
   useEffect(() => {
-    dispatch(getContactsAction());
+    dispatch(getContacts());
   }, [dispatch]);
 
   const addNewContact = () => {
-    dispatch(addContactAction());
+    dispatch(addContact());
   };
 
   return (
@@ -26,9 +25,9 @@ function ContactList() {
           return <ContactItem key={contact.id} contact={contact} />;
         })}
       </div>
-      <button className="buttonNew" onClick={addNewContact}>
-        New
-      </button>
+      <button className="buttonNew" onClick={addNewContact}> 
+         New
+      </button> 
     </div>
   );
 }

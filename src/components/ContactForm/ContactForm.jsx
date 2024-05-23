@@ -2,17 +2,17 @@ import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 // ===================================================
 import {
-  createContactAction,
-  delContactAction,
-  updateContactAction,
-} from '../../store/slices/contactsActions';
+  createContact,
+  delContact,
+  updateContact,
+} from '../../store/slices/contactSlice';
 // ===================================================
 import './ContactForm.css';
 
 function ContactForm() {
   const dispatch = useDispatch();
 
-  let currentContact = useSelector((state) => state.currentContact);
+  let currentContact = useSelector((state) => state.contactList.currentContact);
   const [contact, setContact] = useState(currentContact);
 
   useEffect(() => {
@@ -23,7 +23,7 @@ function ContactForm() {
 
   const onContactDelete = (event) => {
     event.preventDefault();
-    dispatch(delContactAction(contact.id));
+    dispatch(delContact(contact.id));
   };
 
   // -----------------Control inputs--------------------------
@@ -51,10 +51,10 @@ function ContactForm() {
   const onFormSubmit = (event) => {
     event.preventDefault();
     if (contact.id) {
-      dispatch(updateContactAction(contact));
+      dispatch(updateContact(contact));
     } else {
       contact.color = bgColor();
-      dispatch(createContactAction(contact));
+      dispatch(createContact(contact));
     }
   };
   // -----------------decoration----------------------------------

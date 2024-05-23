@@ -20,17 +20,17 @@
       "id": 9,
       "fName": "Eugene",
       "lName": "Pupkin",
-      "email": "",
+      "email": "pupkin@gmail.com",
       "telNumber": "+380660000002",
-      "color": "rgb(181, 97, 103)"
+      "color": "rgb(18, 19, 169)"
     },
     {
       "id": 10,
       "fName": "Anna",
       "lName": "Pupkina",
-      "email": "",
+      "email": "pupkina@gmail.com",
       "telNumber": "+380660000003",
-      "color": "rgb(155, 223, 18)"
+      "color": "rgb(74, 17, 60)"
     }
   ]
 }
