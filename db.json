@@ -14,7 +14,7 @@
       "lName": "Bichenok",
       "email": "bichenock@gmail.com",
       "telNumber": "+380660000001",
-      "color": "rgb(59, 175, 96)"
+      "color": "rgb(135, 101, 6)"
     },
     {
       "id": 9,
@@ -22,7 +22,7 @@
       "lName": "Pupkin",
       "email": "pupkin@gmail.com",
       "telNumber": "+380660000002",
-      "color": "rgb(18, 19, 169)"
+      "color": "rgb(223, 64, 39)"
     },
     {
       "id": 10,
@@ -30,7 +30,7 @@
       "lName": "Pupkina",
       "email": "pupkina@gmail.com",
       "telNumber": "+380660000003",
-      "color": "rgb(74, 17, 60)"
+      "color": "rgb(129, 54, 27)"
     }
   ]
 }

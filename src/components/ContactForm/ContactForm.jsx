@@ -22,7 +22,7 @@ function ContactForm() {
   // -------------function for delete contact-----------------
 
   const onContactDelete = (event) => {
-    event.preventDefault();
+    event.preventDefault(); 
     dispatch(delContact(contact.id));
   };
 
@@ -127,7 +127,9 @@ function ContactForm() {
         {!currentContact.id ? (
           <></>
         ) : (
-          <button onClick={onContactDelete}>Delete</button>
+          <button type="button" onClick={onContactDelete}>
+            Delete
+          </button>
         )}
       </div>
     </form>

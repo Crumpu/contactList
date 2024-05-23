@@ -114,7 +114,6 @@ const contactSlice = createSlice({
   extraReducers: (builder) => {
     //   Get all
     builder.addCase(getContacts.fulfilled, (state, { payload }) => {
-      console.log(payload);
       state.isFetching = false;
       state.error = null;
       state.contacts = payload;

@@ -8,8 +8,6 @@ function ContactList() {
   const contacts = useSelector((state) => state.contactList.contacts);
   const dispatch = useDispatch();
 
-  console.log(contacts)
-
   useEffect(() => {
     dispatch(getContacts());
   }, [dispatch]);
@@ -25,9 +23,9 @@ function ContactList() {
           return <ContactItem key={contact.id} contact={contact} />;
         })}
       </div>
-      <button className="buttonNew" onClick={addNewContact}> 
-         New
-      </button> 
+      <button className="buttonNew" onClick={addNewContact}>
+        New
+      </button>
     </div>
   );
 }
