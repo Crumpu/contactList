@@ -61,9 +61,8 @@ function ContactForm() {
 
   const schema = Yup.object().shape({
     email: Yup.string().required('Email is required field'),
-    telNumber: Yup.string()
-      .required('Phone is required field')
-      .matches(regExpPhone/* , {
+    telNumber: Yup.string().required('Phone is required field').matches(
+      regExpPhone /* , {
         message: (value) => {
           if (!value.match(regExpCountryCode)) {
             return 'The country code is either missing or entered incorrectly, the number must begin with "+380"';
@@ -78,7 +77,8 @@ function ContactForm() {
             return true;
           }
         },
-      } */),
+      } */
+    ),
   });
 
   // -----------------decoration----------------------------------
