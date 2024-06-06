@@ -1,11 +1,14 @@
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
+import * as Yup from 'yup';
 // ===================================================
 import {
   createContact,
   delContact,
   updateContact,
 } from '../../store/slices/contactSlice';
+import { emptyContact } from '../../constants/constants';
 // ===================================================
 import './ContactForm.css';
 
@@ -22,18 +25,8 @@ function ContactForm() {
   // -------------function for delete contact-----------------
 
   const onContactDelete = (event) => {
-    event.preventDefault(); 
+    event.preventDefault();
     dispatch(delContact(contact.id));
-  };
-
-  // -----------------Control inputs--------------------------
-
-  const onInputChange = (event) => {
-    const { name, value } = event.target;
-    setContact({
-      ...contact,
-      [name]: value,
-    });
   };
 
   // -------------------clearInput-----------------------------
@@ -48,15 +41,46 @@ function ContactForm() {
 
   // --------Function for create and update contact------------
 
-  const onFormSubmit = (event) => {
-    event.preventDefault();
-    if (contact.id) {
-      dispatch(updateContact(contact));
+  const onFormSubmit = (values) => {
+    if (values.id) {
+      dispatch(updateContact(values));
     } else {
       contact.color = bgColor();
-      dispatch(createContact(contact));
+      dispatch(createContact(values));
     }
   };
+
+  // -------------------regExp------------------------------------
+
+  // const regExpCountryCode = /^\+380$/;
+  // const regExpOperatorCode =
+  //   /^\+380(66|50|99|95|67|68|97|96|98|93|73|63){5,6}$/;
+  const regExpPhone = /^\+380(66|50|99|95|67|68|97|96|98|93|73|63)\d{7}$/;
+
+  // -------------------schema------------------------------------
+
+  const schema = Yup.object().shape({
+    email: Yup.string().required('Email is required field'),
+    telNumber: Yup.string()
+      .required('Phone is required field')
+      .matches(regExpPhone/* , {
+        message: (value) => {
+          if (!value.match(regExpCountryCode)) {
+            return 'The country code is either missing or entered incorrectly, the number must begin with "+380"';
+          }
+          if (!value.match(regExpOperatorCode)) {
+            return 'Invalid operator code';
+          }
+          if (!value.match(regExpPhone)) {
+            return 'The number entered is incorrect';
+          }
+          if (value.match(regExpPhone)) {
+            return true;
+          }
+        },
+      } */),
+  });
+
   // -----------------decoration----------------------------------
   const randomColor = () => {
     const min = 0;
@@ -69,70 +93,59 @@ function ContactForm() {
     `rgb(${randomColor()}, ${randomColor()}, ${randomColor()})`;
 
   // --------------------------------------------------------------
-  return (
-    <form id="contactItemForm" onSubmit={onFormSubmit}>
-      <div>
-        <div className="inputDiv">
-          <input
-            type="text"
-            name="fName"
-            placeholder="First name"
-            value={contact.fName}
-            onChange={onInputChange}
-          />
-          <span className="clearInput" onClick={onClearInput}>
-            &#10006;
-          </span>
-        </div>
-        <div className="inputDiv">
-          <input
-            type="text"
-            name="lName"
-            placeholder="Last name"
-            value={contact.lName}
-            onChange={onInputChange}
-          />
-          <span className="clearInput" onClick={onClearInput}>
-            &#10006;
-          </span>
-        </div>
 
-        <div className="inputDiv">
-          <input
-            type="email"
-            name="email"
-            placeholder="Email"
-            value={contact.email}
-            onChange={onInputChange}
-          />
-          <span className="clearInput" onClick={onClearInput}>
-            &#10006;
-          </span>
+  const renderForm = () => {
+    return (
+      <Form id="contactItemForm">
+        <div>
+          <div className="inputDiv">
+            <Field type="text" name="fName" placeholder="First name" />
+            <span className="clearInput" onClick={onClearInput}>
+              &#10006;
+            </span>
+          </div>
+          <div className="inputDiv">
+            <Field type="text" name="lName" placeholder="Last name" />
+            <span className="clearInput" onClick={onClearInput}>
+              &#10006;
+            </span>
+          </div>
+
+          <div className="inputDiv">
+            <Field type="email" name="contact.email" placeholder="Email" />
+            <span className="clearInput" onClick={onClearInput}>
+              &#10006;
+            </span>
+          </div>
+          <div className="inputDiv">
+            <Field type="tel" placeholder="Phone number" name="telNumber" />
+            <span className="clearInput" onClick={onClearInput}>
+              &#10006;
+            </span>
+          </div>
         </div>
-        <div className="inputDiv">
-          <input
-            type="tel"
-            placeholder="Phone number"
-            name="telNumber"
-            value={contact.telNumber}
-            onChange={onInputChange}
-          />
-          <span className="clearInput" onClick={onClearInput}>
-            &#10006;
-          </span>
+        <div className="formButtons">
+          <button type="submit">Save</button>
+          {!currentContact.id ? (
+            <></>
+          ) : (
+            <button type="button" onClick={onContactDelete}>
+              Delete
+            </button>
+          )}
         </div>
-      </div>
-      <div className="formButtons">
-        <button type="submit">Save</button>
-        {!currentContact.id ? (
-          <></>
-        ) : (
-          <button type="button" onClick={onContactDelete}>
-            Delete
-          </button>
-        )}
-      </div>
-    </form>
+      </Form>
+    );
+  };
+
+  return (
+    <Formik
+      initialValues={currentContact ? currentContact : emptyContact}
+      onSubmit={onFormSubmit}
+      validationSchema={schema}
+    >
+      {renderForm}
+    </Formik>
   );
 }
 
