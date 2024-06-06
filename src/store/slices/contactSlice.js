@@ -147,6 +147,8 @@ const contactSlice = createSlice({
   },
 });
 
+const createEmptyContact = () => emptyContact;
+
 const { actions, reducer } = contactSlice;
 export const { selectContact, addContact } = actions;
 

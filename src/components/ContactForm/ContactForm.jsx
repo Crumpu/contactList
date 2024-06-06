@@ -16,36 +16,36 @@ function ContactForm() {
   const dispatch = useDispatch();
 
   let currentContact = useSelector((state) => state.contactList.currentContact);
-  const [contact, setContact] = useState(currentContact);
+  // const [contact, setContact] = useState(currentContact);
 
-  useEffect(() => {
-    setContact(currentContact);
-  }, [currentContact]);
+  // useEffect(() => {
+  //   setContact(currentContact);
+  // }, [currentContact]);
 
   // -------------function for delete contact-----------------
 
-  const onContactDelete = (event) => {
-    event.preventDefault();
-    dispatch(delContact(contact.id));
-  };
+  // const onContactDelete = (event) => {
+  //   event.preventDefault();
+  //   dispatch(delContact(contact.id));
+  // };
 
   // -------------------clearInput-----------------------------
 
-  const onClearInput = (event) => {
-    const sibling = event.target.previousSibling;
-    setContact({
-      ...contact,
-      [sibling.name]: '',
-    });
-  };
+  // const onClearInput = (event) => {
+  //   const sibling = event.target.previousSibling;
+  //   setContact({
+  //     ...contact,
+  //     [sibling.name]: '',
+  //   });
+  // };
 
   // --------Function for create and update contact------------
 
-  const onFormSubmit = (values) => {
+  const onFormSubmit = ({values}) => {
     if (values.id) {
       dispatch(updateContact(values));
     } else {
-      contact.color = bgColor();
+      values.color = bgColor();
       dispatch(createContact(values));
     }
   };
@@ -94,7 +94,7 @@ function ContactForm() {
 
   // --------------------------------------------------------------
 
-  const renderForm = () => {
+  const renderForm = ({values}) => {
     return (
       <Form id="contactItemForm">
         <div>
@@ -112,7 +112,7 @@ function ContactForm() {
           </div>
 
           <div className="inputDiv">
-            <Field type="email" name="contact.email" placeholder="Email" />
+            <Field type="email" name="email" placeholder="Email" />
             <span className="clearInput" onClick={onClearInput}>
               &#10006;
             </span>
@@ -126,7 +126,7 @@ function ContactForm() {
         </div>
         <div className="formButtons">
           <button type="submit">Save</button>
-          {!currentContact.id ? (
+          {!values.id ? (
             <></>
           ) : (
             <button type="button" onClick={onContactDelete}>
