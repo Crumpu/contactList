@@ -1,20 +1,44 @@
 {
   "contacts": [
     {
-      "fName": "Ольга ",
-      "lName": "Быченок",
-      "email": "olga@gmail.com",
-      "telNumber": "+380660000001",
-      "color": "rgb(81, 95, 65)",
-      "id": 2
+      "fName": "Denis",
+      "lName": "Poliarush",
+      "email": "denis@gmail.com",
+      "telNumber": "+380 (66) 000-11-11",
+      "color": "rgb(26, 128, 66)",
+      "id": 4
     },
     {
-      "fName": "Денис",
-      "lName": "Поляруш",
-      "email": "denis@gmail.com",
-      "telNumber": "+380660000000",
-      "color": "rgb(77, 59, 217)",
-      "id": 3
+      "fName": "Anna",
+      "lName": "Pupkina",
+      "email": "pupkina@gmail.com",
+      "telNumber": "+380 (66) 000-00-00",
+      "color": "rgb(120, 104, 84)",
+      "id": 5
+    },
+    {
+      "fName": "Olga",
+      "lName": "Bichenok",
+      "email": "bichenock@gmail.com",
+      "telNumber": "+380 (66) 000-00-11",
+      "color": "rgb(87, 151, 183)",
+      "id": 7
+    },
+    {
+      "fName": "Eugene",
+      "lName": "Pupkin",
+      "email": "pupkin@gmail.com",
+      "telNumber": "+380 (66) 000-00-21",
+      "color": "rgb(118, 179, 197)",
+      "id": 8
+    },
+    {
+      "fName": "Artem",
+      "lName": "Kolchin",
+      "email": "kolchin@gmail.com",
+      "telNumber": "+380 (00) 000-00-00",
+      "color": "rgb(179, 158, 35)",
+      "id": 9
     }
   ]
 }

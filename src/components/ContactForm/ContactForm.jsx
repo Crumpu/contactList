@@ -3,6 +3,9 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
+import ContentCopyIcon from "@mui/icons-material/ContentCopy";
+import { IconButton, InputAdornment } from "@mui/material";
 // -----------------------------------------------------------------------------------
 import {
   createContact,
@@ -12,10 +15,11 @@ import {
 import { emptyContact } from "../../constants/constants";
 // -----------------------------------------------------------------------------------
 import "./ContactForm.css";
+
 // ======================================================================================
 
 function ContactForm() {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch(null);
 
   let currentContact = useSelector((state) => state.contactList.currentContact);
 
@@ -39,7 +43,7 @@ function ContactForm() {
 
   // -------------------regExp------------------------------------
 
-  const regExpPhone = /^\+380(66|50|99|95|67|68|97|96|98|93|73|63)\d{7}$/;
+  const regExpPhone = /^\+380\s\(\d{2}\)\s\d{3}-\d{2}-\d{2}$/;
 
   // -------------------schema------------------------------------
 
@@ -49,7 +53,7 @@ function ContactForm() {
       .email("Entered incorrect email"),
     telNumber: Yup.string()
       .required("Phone is required field")
-      .matches(regExpPhone, "Tel number must be in format +380YYXXXXXXX"),
+      .matches(regExpPhone, "Tel number must be in format +380 (YY) XXX-XX-XX"),
   });
 
   // -----------------decoration----------------------------------
@@ -76,14 +80,16 @@ function ContactForm() {
               label="First name"
               type="text"
               name="fName"
-              autocomplete="firstName"
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton onClick={() => setFieldValue("fName", "")}>
+                      <KeyboardBackspaceIcon />
+                    </IconButton>
+                  </InputAdornment>
+                ),
+              }}
             />
-            <span
-              className="clearInput"
-              onClick={() => setFieldValue("fName", "")}
-            >
-              &#10006;
-            </span>
           </Box>
 
           <Box className="inputDiv">
@@ -92,14 +98,16 @@ function ContactForm() {
               type="text"
               name="lName"
               label="Last name"
-              autocomplete="lastName"
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton onClick={() => setFieldValue("lName", "")}>
+                      <KeyboardBackspaceIcon />
+                    </IconButton>
+                  </InputAdornment>
+                ),
+              }}
             />
-            <span
-              className="clearInput"
-              onClick={() => setFieldValue("lName", "")}
-            >
-              &#10006;
-            </span>
           </Box>
 
           <Box className="inputDiv">
@@ -110,13 +118,16 @@ function ContactForm() {
               name="email"
               placeholder="Email"
               error={touched.email && Boolean(errors.email)}
-            />
-            <span
-              className="clearInput"
-              onClick={() => setFieldValue("email", "")}
-            >
-              &#10006;
-            </span>
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton onClick={() => setFieldValue("email", "")}>
+                      <KeyboardBackspaceIcon />
+                    </IconButton>
+                  </InputAdornment>
+                ),
+              }}
+            ></Field>
           </Box>
           <ErrorMessage name="email">
             {(msg) => <div className="validationError">{msg}</div>}
@@ -124,19 +135,32 @@ function ContactForm() {
 
           <Box className="inputDiv">
             <Field
-              as={TextField}
-              label="Mobile phone number"
-              type="tel"
-              placeholder="Mobile phone number"
               name="telNumber"
+              as={TextField}
+              label="Phone number"
+              type="tel"
               error={touched.telNumber && Boolean(errors.telNumber)}
-            />
-            <span
-              className="clearInput"
-              onClick={() => setFieldValue("telNumber", "")}
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton onClick={() => setFieldValue("telNumber", "")}>
+                      <KeyboardBackspaceIcon />
+                    </IconButton>
+                  </InputAdornment>
+                ),
+              }}
+            ></Field>
+
+            <IconButton
+              sx={{
+                cursor: "pointer",
+              }}
+              onClick={() =>
+                navigator.clipboard.writeText(`${values.telNumber}`)
+              }
             >
-              &#10006;
-            </span>
+              <ContentCopyIcon>Copy</ContentCopyIcon>
+            </IconButton>
           </Box>
           <ErrorMessage name="telNumber">
             {(msg) => <div className="validationError">{msg}</div>}
