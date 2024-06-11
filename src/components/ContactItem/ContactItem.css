@@ -46,9 +46,3 @@
   font-size: 1em;
   font-weight: 600;
 }
-
-.spinner {
-  display: flex;
-  align-items: center;
-  height: 50%;
-}

@@ -27,6 +27,7 @@ export const getContacts = createAsyncThunk(
   }
 );
 
+
 export const delContact = createAsyncThunk(
   `${CONTACT_SLICE_NAME}/delContact`,
   async function (id, { rejectWithValue }) {
@@ -146,8 +147,6 @@ const contactSlice = createSlice({
     builder.addCase(delContact.rejected, setError);
   },
 });
-
-const createEmptyContact = () => emptyContact;
 
 const { actions, reducer } = contactSlice;
 export const { selectContact, addContact } = actions;

@@ -1,6 +1,6 @@
 export const contactsState = [
     {
-      id: 1,
+      id: 1, 
       fName: "",
       lName: "",
       email: "",

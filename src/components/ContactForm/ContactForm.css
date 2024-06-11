@@ -40,3 +40,7 @@ input {
   display: flex;
   justify-content: space-evenly;
 }
+
+.validationError{
+  color: rgb(209, 0, 0);
+}
